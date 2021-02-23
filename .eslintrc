@@ -1,0 +1,27 @@
+{
+    "extends": "eslint-config-airbnb",
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "rules": {
+        "import/extensions": 0,
+        "import/no-extraneous-dependencies": 0,
+        "import/no-unresolved": [
+            2,
+            {
+                "ignore": [
+                    "electron"
+                ]
+            }
+        ],
+        "linebreak-style": 0,
+        "no-console": "off",
+        "eol-last": "off",
+        "global-require": 0,
+        "no-unused-vars": "off",
+        "no-new": "off",
+        "no-debugger": "off"
+    }
+}

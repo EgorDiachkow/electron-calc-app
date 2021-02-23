@@ -11,6 +11,7 @@ const createWindow = () => {
     height: 600,
   });
 
+  // eslint-disable-next-line no-undef
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
   mainWindow.webContents.openDevTools();
 };
@@ -28,4 +29,3 @@ app.on('activate', () => {
     createWindow();
   }
 });
-
