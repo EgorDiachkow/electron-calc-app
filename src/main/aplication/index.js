@@ -1,6 +1,7 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import { Storage } from '../processing/Storage';
+
+const { app, BrowserWindow, ipcMain } = require('electron');
 
 const look = app.requestSingleInstanceLock();
 
@@ -27,7 +28,7 @@ export default class CalculatorApp {
 
     // this.getFileSetting();
     // eslint-disable-next-line no-undef
-    this.window.webContents.loadFile(MAIN_WINDOW_WEBPACK_ENTRY);
+    this.window.webContents.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
     this.window.on('closed', () => {
       this.window = null;
     });
