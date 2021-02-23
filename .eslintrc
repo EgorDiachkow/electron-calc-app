@@ -23,6 +23,7 @@
         "no-unused-vars": "off",
         "no-new": "off",
         "no-debugger": "off",
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "jsx-a11y/alt-text": "off"
     }
 }
