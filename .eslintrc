@@ -22,6 +22,7 @@
         "global-require": 0,
         "no-unused-vars": "off",
         "no-new": "off",
-        "no-debugger": "off"
+        "no-debugger": "off",
+        "object-curly-newline": "off"
     }
 }
