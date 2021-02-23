@@ -1,8 +1,22 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import LeftBar from './components/containers/LeftBar.jsx';
+import RigthBar from './components/containers/RigthBar.jsx';
+import classes from './index.module.css';
 
-function render() {
-  ReactDOM.render(<h2>Hello from 1React!</h2>, document.body);
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/main_window">
+            <div className={classes.container}>
+              <LeftBar />
+              <RigthBar />
+            </div>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
-
-render();

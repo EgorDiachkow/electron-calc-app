@@ -1,0 +1,26 @@
+.container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.containerItem {
+    display: flex;
+    align-items: center;
+    padding: 12px 0px;
+    margin-left: -10px;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+.titleItem{
+    user-select:none;
+    color:#fff;
+    font-size: 16px;
+    margin-left: 15px;
+}
+.containerItem:hover{
+    cursor: pointer;
+    background-color: #414241;
+}
+.containerItem:first-child{
+    background-color: #1BACBF;
+}

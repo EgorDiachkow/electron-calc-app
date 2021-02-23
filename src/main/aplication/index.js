@@ -16,10 +16,11 @@ export default class CalculatorApp {
 
   createWindow() {
     this.window = new BrowserWindow({
-      height: 800,
-      width: 800,
+      height: 550,
+      width: 850,
       show: false,
-      backgroundColor: '#2980b9',
+      transparent: true,
+      frame: false,
       webPreferences: {
         preload: path.join(__dirname, '../../preload/preload.js'),
         // nodeIntegration: true,
