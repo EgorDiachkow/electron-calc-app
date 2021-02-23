@@ -2,8 +2,6 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import { Storage } from '../processing/Storage';
 
-const CONFIG = require('../environments/development.json');
-
 const look = app.requestSingleInstanceLock();
 
 export default class CalculatorApp {
@@ -17,10 +15,10 @@ export default class CalculatorApp {
 
   createWindow() {
     this.window = new BrowserWindow({
-      height: CONFIG.height,
-      width: CONFIG.width,
-      show: CONFIG.show,
-      backgroundColor: CONFIG.backgroundColor,
+      height: 800,
+      width: 800,
+      show: false,
+      backgroundColor: '#2980b9',
       webPreferences: {
         preload: path.join(__dirname, '../../preload/preload.js'),
         // nodeIntegration: true,
@@ -28,7 +26,8 @@ export default class CalculatorApp {
     });
 
     // this.getFileSetting();
-    this.window.webContents.loadFile('src/renderer/index.html');
+    // eslint-disable-next-line no-undef
+    this.window.webContents.loadFile(MAIN_WINDOW_WEBPACK_ENTRY);
     this.window.on('closed', () => {
       this.window = null;
     });

@@ -1,31 +1,34 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
+import CalculatorApp from './aplication/index';
 
-if (require('electron-squirrel-startup')) {
-  app.quit();
-}
+new CalculatorApp();
 
-const createWindow = () => {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-  });
+// const { app, BrowserWindow } = require('electron');
+// const path = require('path');
 
-  // eslint-disable-next-line no-undef
-  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-  mainWindow.webContents.openDevTools();
-};
+// if (require('electron-squirrel-startup')) {
+//   app.quit();
+// }
 
-app.on('ready', createWindow);
+// const createWindow = () => {
+//   const mainWindow = new BrowserWindow({
+//     width: 800,
+//     height: 600,
+//   });
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
+//   // eslint-disable-next-line no-undef
+//   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+// };
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
-});
+// app.on('ready', createWindow);
+
+// app.on('window-all-closed', () => {
+//   if (process.platform !== 'darwin') {
+//     app.quit();
+//   }
+// });
+
+// app.on('activate', () => {
+//   if (BrowserWindow.getAllWindows().length === 0) {
+//     createWindow();
+//   }
+// });
