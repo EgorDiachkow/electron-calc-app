@@ -10,6 +10,7 @@
     margin-left: -10px;
     padding-left: 10px;
     border-radius: 3px;
+    margin-bottom: 8px;
 }
 .titleItem{
     user-select:none;
@@ -20,6 +21,8 @@
 .containerItem:hover{
     cursor: pointer;
     background-color: #414241;
+    transition-property: background-color;
+    transition-duration: .1s;
 }
 .containerItem:first-child{
     background-color: #1BACBF;
