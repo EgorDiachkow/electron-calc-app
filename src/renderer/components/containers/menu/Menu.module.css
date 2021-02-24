@@ -24,9 +24,3 @@
     transition-property: background-color;
     transition-duration: .1s;
 }
-.containerItem:first-child{
-    background-color: #1BACBF;
-}
-.containerItem:last-child{
-    margin-top: 270px;
-}
