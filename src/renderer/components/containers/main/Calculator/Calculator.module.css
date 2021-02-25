@@ -1,0 +1,34 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerItem {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    max-width: 350px;
+    width: 100%;
+    height: 350px;
+    margin-top: 30px;
+    flex-direction: column;
+}
+.inputContainer {
+    padding:10px;
+    margin: 5px 0;
+}
+.inputItem{
+    background-color: inherit;
+    border: none;
+    font-size: 20px;
+    border-bottom: 1px solid #1E1E1E;
+    outline: none;
+    max-width: 150px;   
+}
+.inputTitle{
+    width: 90px;
+    display: inline-block;
+    margin-right: 5px;
+}
