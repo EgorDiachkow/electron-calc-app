@@ -4,6 +4,7 @@ import classes from './Calculator.module.css';
 export default function CalculatorContainer() {
   return (
     <div className={classes.container}>
+      <div className={classes.containerValue}>Итого: 1500 рублей</div>
       <div className={classes.containerItem}>
         <div className={classes.inputContainer}>
           <span className={classes.inputTitle}>Киловатт</span>
@@ -40,6 +41,10 @@ export default function CalculatorContainer() {
           <input className={classes.inputItem} type="text" value="19" />
           <span>руб.</span>
         </div>
+      </div>
+      <div className={classes.containerActions}>
+        <div className={`${classes.btn} ${classes.calculation}`}>Расчитать</div>
+        <div className={`${classes.btn} ${classes.reset}`}>Сброс</div>
       </div>
     </div>
   );
