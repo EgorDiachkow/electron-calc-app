@@ -2,10 +2,10 @@
     display: flex;
     height: 25px;
     width: 100%;
-    border-bottom: 4px solid #414241;
     border-radius: 2px;
     padding-bottom: 15px;
     align-items: center;
+    border-bottom: 3px solid #414241;
 }
 
 .title{

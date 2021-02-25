@@ -1,29 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { IoCalculatorSharp, IoEnter, IoStatsChartOutline } from 'react-icons/io5';
 import classes from './Menu.module.css';
 
 export default function MenuContainer() {
   return (
     <div className={classes.container}>
-      <Link to="/raschet">
+      <NavLink activeClassName={classes.active} className={classes.linkItem} to="/raschet">
         <div className={classes.containerItem}>
           <IoCalculatorSharp size="25px" color="#fff" />
           <span className={classes.titleItem}>Расчёт</span>
         </div>
-      </Link>
-      <Link to="/state">
+      </NavLink>
+      <NavLink activeClassName={classes.active} className={classes.linkItem} to="/state">
         <div className={classes.containerItem}>
           <IoStatsChartOutline size="25px" color="#fff" />
           <span className={classes.titleItem}>Статистика</span>
         </div>
-      </Link>
-      <Link to="/login">
+      </NavLink>
+      <NavLink activeClassName={classes.active} className={classes.linkItem} to="/login">
         <div className={classes.containerItem}>
           <IoEnter size="25px" color="#fff" />
           <span className={classes.titleItem}>Регистрация</span>
         </div>
-      </Link>
+      </NavLink>
     </div>
   );
 }

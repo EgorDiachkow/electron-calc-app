@@ -2,15 +2,13 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 .containerItem {
     display: flex;
     align-items: center;
     padding: 12px 0px;
-    margin-left: -10px;
-    padding-left: 10px;
     border-radius: 3px;
-    margin-bottom: 8px;
 }
 .titleItem{
     user-select:none;
@@ -18,9 +16,17 @@
     font-size: 16px;
     margin-left: 15px;
 }
-.containerItem:hover{
-    cursor: pointer;
+.active{
+    background-color: #1BABBF;
+}
+.linkItem {
+    margin-bottom: 8px;
+    margin-left: -10px;
+    padding-left: 10px;
+    border-radius: 2px;
+}
+.linkItem:hover:not(.active){
     background-color: #414241;
     transition-property: background-color;
-    transition-duration: .1s;
+    transition-duration: .05s;
 }
