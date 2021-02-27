@@ -28,6 +28,7 @@ export default class CalculatorApp {
       },
     });
     // this.getFileSetting();
+    this.window.webContents.openDevTools();
     // eslint-disable-next-line no-undef
     this.window.webContents.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
     this.window.on('closed', () => {
@@ -40,6 +41,7 @@ export default class CalculatorApp {
     ipcMain.on('nameChenel', () => {
       this.window.webContents.send('entries', this.storage.get('entries'));
     });
+
     ipcMain.on('action', (_, data) => {
       console.log(data);
     });

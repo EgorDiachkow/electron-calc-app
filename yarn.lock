@@ -2626,7 +2626,7 @@
     "lodash.template" "^4.2.2"
     "temp" "^0.9.0"
 
-"electron@11.3.0":
+"electron@^11.3.0":
   "integrity" "sha512-MhdS0gok3wZBTscLBbYrOhLaQybCSAfkupazbK1dMP5c+84eVMxJE/QGohiWQkzs0tVFIJsAHyN19YKPbelNrQ=="
   "resolved" "https://registry.yarnpkg.com/electron/-/electron-11.3.0.tgz"
   "version" "11.3.0"

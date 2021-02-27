@@ -77,7 +77,7 @@
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^4.2.1",
-    "electron": "11.3.0",
+    "electron": "^11.3.0",
     "electron-middle-sass": "^1.0.3",
     "node-loader": "^1.0.1",
     "style-loader": "^1.2.1"

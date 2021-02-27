@@ -4,28 +4,40 @@ import Setting from '../../../../entity/Setting.js';
 import classes from './Calculator.module.css';
 
 export default function CalculatorContainer() {
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = (data) => console.log(data);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(false);
+  const [value, setValue] = useState('');
+  // eslint-disable-next-line no-shadow
+  const onChange = ({ target: { value } }) => setValue((prev) => (/\d+/.test(Number(value)) ? value : prev));
 
-  // useEffect(() => {
-  //   window.getData().then((result) => {
-  //     const settingProfile = new Setting(result.priceRate, result.services);
+  useEffect(() => {
+    window.getData().then((result) => {
+      const settingProfile = new Setting(result.priceRate, result.services);
 
-  //     setData(settingProfile);
-  //   });
-  // }, []);
-  console.log(data);
+      setData([settingProfile]);
+    });
+  }, []);
+
   return (
     <div className={classes.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input name="exampleRequired1" ref={register({ required: true })} />
-        <input name="exampleRequired2" ref={register({ required: true })} />
-        <input name="exampleRequired3" ref={register({ required: true })} />
-        <input name="exampleRequired4" ref={register({ required: true })} />
-        <input name="exampleRequired5" ref={register({ required: true })} />
-        <input name="exampleRequired6" ref={register({ required: true })} />
-        <input name="exampleRequired7" ref={register({ required: true })} />
+        {data ? (
+          data[0].servises.map((product) => (
+            <>
+              <label htmlFor={product.name}>{product.name}</label>
+              <input
+                id={product.name}
+                name={product.name}
+                defaultValue={product.rate}
+                key={product.id}
+                ref={register({ max: 0, min: 5000, maxLength: 100, pattern: /\d+/ })}
+              />
+            </>
+          ))
+        ) : (
+          <h1>Загрузка данных</h1>
+        )}
         <input type="submit" />
       </form>
     </div>
