@@ -17,7 +17,7 @@ export default class CalculatorApp {
   createWindow() {
     this.window = new BrowserWindow({
       height: 550,
-      width: 850,
+      width: 1250,
       show: false,
       transparent: true,
       frame: false,

@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    flex-direction: column;
 }
 .containerItem {
     display: flex;
@@ -21,37 +22,67 @@
     margin: 2px 0;
 }
 .inputItem{
-    background-color: inherit;
-    border: none;
-    font-size: 20px;
-    border-bottom: 1px solid #1E1E1E;
+    border: 0;
+    border-bottom: 1px solid #888;
+    font-size: 21px;
+    width: 103px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 5px;
     outline: none;
-    max-width: 150px;   
+    position: relative;
+    color: #414241;
+}
+.inputItem:focus:after{
+    position: absolute;
+    content: ' ';
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #1BABBF;
+    transition: all 0.2s ease;
+}
+.inputILabel{
+    letter-spacing: 2px;
+    line-height: 50px;
+    text-indent: 10px;
+    text-transform: uppercase;
+    width: 141px;
+    display: inline-block;
+    text-align: left;
+    font-size: 15px;
 }
 .inputTitle{
     width: 90px;
     display: inline-block;
     margin-right: 5px;
 }
-.containerValue{
-    position: absolute;
-    top: 40px;
-    left: 0;
-    text-align: center;
-    right: 0;
-    font-size: 30px;
-}
-.containerActions{
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    right: 0;
+
+.actionContainer{
     display: flex;
     justify-content: center;
+    margin: 0 -20px;
 }
 .btn {
-    padding:5px 15px;
-    border: 1px solid #000;
-    margin: 0 15px;
+    padding: 12px;
+    outline: none;
+    margin: 0 4px;
+    color: #fff;
     cursor: pointer;
+    max-width: 200px;
+    border: none;
+    font-size: 18px;
+    background-color: #1BABBF;
+    width: 100%;
+}
+.reset {
+    max-width: 110px;
+    background-color: rgba(36,36,36,.8);
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
