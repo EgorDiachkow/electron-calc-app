@@ -3,6 +3,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+  user-select:none;
 }
 .title-bar{
   position: absolute;

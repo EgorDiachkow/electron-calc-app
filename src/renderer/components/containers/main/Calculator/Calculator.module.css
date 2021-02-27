@@ -6,6 +6,9 @@
     align-items: center;
     position: relative;
     flex-direction: column;
+    background-color: #fff;
+    padding: 9px 0;
+    box-shadow: 1px 1px 22px 7px rgba(0,0,0,0.06);
 }
 .containerItem {
     display: flex;
@@ -62,7 +65,7 @@
 .actionContainer{
     display: flex;
     justify-content: center;
-    margin: 0 -20px;
+    margin: 0 -20px 9px;
 }
 .btn {
     padding: 12px;
@@ -85,4 +88,5 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    margin-top: 15px;
 }

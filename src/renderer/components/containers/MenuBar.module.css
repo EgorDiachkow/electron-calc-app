@@ -11,9 +11,57 @@
 }
 
 .containerrigtht{
-    background-color: #fff;
+    background-color: #EFEFEF;
     width: 100%;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    padding: 70px 15px 30px;
+    padding: 49px 35px;
+}
+
+.iconSetting,
+.iconSave {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 40px;
+    height: 30px;
+    background-color: rgba(36,36,36,.5);
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 999999;
+}
+.iconSetting:hover,
+.iconSave:hover {
+    width: 45px;
+    transition-duration: .2s;
+}
+.iconSave {
+    bottom: 50px;
+    top: auto;
+    /* animation: jump .9s infinite; */
+
+}
+@keyframes jump {
+    0% {
+        width: 40px;
+    }
+    50% {
+        width: 40px;
+    }
+    55% {
+        width: 50px;
+    }
+    65%{
+        width: 50px;
+    }
+    95% {
+        width: 40px;
+    }
+    100% {
+        width: 40px;
+    }
 }

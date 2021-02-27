@@ -46,7 +46,7 @@ export default function CalculatorContainer() {
           )}
         </div>
         <div className={classes.actionContainer}>
-          <input className={`${classes.btn}`} type="submit" />
+          <input className={`${classes.btn}`} value="рассчитать" type="submit" />
           <input
             className={`${classes.btn} ${classes.reset}`}
             type="reset"

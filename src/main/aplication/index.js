@@ -32,7 +32,7 @@ export default class CalculatorApp {
       },
     });
     // this.getFileSetting();
-    // this.window.webContents.openDevTools();
+    this.window.webContents.openDevTools();
     // eslint-disable-next-line no-undef
     this.window.webContents.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
     this.window.on('closed', () => {
