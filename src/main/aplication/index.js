@@ -22,11 +22,11 @@ export default class CalculatorApp {
       transparent: true,
       frame: false,
       webPreferences: {
-        preload: path.join(__dirname, '../../preload/preload.js'),
+        // eslint-disable-next-line no-undef
+        preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
         // nodeIntegration: true,
       },
     });
-
     // this.getFileSetting();
     // eslint-disable-next-line no-undef
     this.window.webContents.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);

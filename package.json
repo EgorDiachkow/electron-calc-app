@@ -53,7 +53,10 @@
                 {
                   "html": "./src/renderer/index.html",
                   "js": "./src/renderer/renderer.js",
-                  "name": "main_window"
+                  "name": "main_window",
+                  "preload": {
+                    "js": "./src/preload/preload.js"
+                  }
                 }
               ]
             }
@@ -91,6 +94,7 @@
     "eslint-plugin-react": "^7.22.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hook-form": "^6.15.4",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "save-dev": "^0.0.1-security"

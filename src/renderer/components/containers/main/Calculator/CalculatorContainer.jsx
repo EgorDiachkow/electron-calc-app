@@ -1,51 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Setting from '../../../../entity/Setting.js';
 import classes from './Calculator.module.css';
 
 export default function CalculatorContainer() {
+  const { register, handleSubmit, watch } = useForm();
+  const onSubmit = (data) => console.log(data);
+  const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   window.getData().then((result) => {
+  //     const settingProfile = new Setting(result.priceRate, result.services);
+
+  //     setData(settingProfile);
+  //   });
+  // }, []);
+  console.log(data);
   return (
     <div className={classes.container}>
-      <div className={classes.containerValue}>Итого: 1500 рублей</div>
-      <div className={classes.containerItem}>
-        <div className={classes.inputContainer}>
-          <span className={classes.inputTitle}>Киловатт</span>
-          <input className={classes.inputItem} type="text" value="0" />
-          <span>кВт⋅ч</span>
-        </div>
-        <div className={classes.inputContainer}>
-          <span className={classes.inputTitle}>Квартплата</span>
-          <input className={classes.inputItem} type="text" value="283" />
-          <span>руб.</span>
-        </div>
-        <div className={classes.inputContainer}>
-          <span className={classes.inputTitle}>Эл. энергия</span>
-          <input className={classes.inputItem} type="text" value="0" />
-          <span>руб.</span>
-        </div>
-        <div className={classes.inputContainer}>
-          <span className={classes.inputTitle}>Газ</span>
-          <input className={classes.inputItem} type="text" value="35" />
-          <span>руб.</span>
-        </div>
-        <div className={classes.inputContainer}>
-          <span className={classes.inputTitle}>Вода</span>
-          <input className={classes.inputItem} type="text" value="163" />
-          <span>руб.</span>
-        </div>
-        <div className={classes.inputContainer}>
-          <span className={classes.inputTitle}>Отопление</span>
-          <input className={classes.inputItem} type="text" value="515" />
-          <span>руб.</span>
-        </div>
-        <div className={classes.inputContainer}>
-          <span className={classes.inputTitle}>Мусор</span>
-          <input className={classes.inputItem} type="text" value="19" />
-          <span>руб.</span>
-        </div>
-      </div>
-      <div className={classes.containerActions}>
-        <div className={`${classes.btn} ${classes.calculation}`}>Расчитать</div>
-        <div className={`${classes.btn} ${classes.reset}`}>Сброс</div>
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input name="exampleRequired1" ref={register({ required: true })} />
+        <input name="exampleRequired2" ref={register({ required: true })} />
+        <input name="exampleRequired3" ref={register({ required: true })} />
+        <input name="exampleRequired4" ref={register({ required: true })} />
+        <input name="exampleRequired5" ref={register({ required: true })} />
+        <input name="exampleRequired6" ref={register({ required: true })} />
+        <input name="exampleRequired7" ref={register({ required: true })} />
+        <input type="submit" />
+      </form>
     </div>
   );
 }
