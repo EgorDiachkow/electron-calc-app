@@ -8,8 +8,46 @@ import classes from './Calculator.module.css';
 
 export default function CalculatorContainer() {
   const { register, handleSubmit, watch, errors, reset } = useForm();
-  const onSubmit = (data) => console.log(data);
+  // eslint-disable-next-line no-use-before-define
+  const onSubmit = (result) => getTotalValue(result);
   const [data, setData] = useState(false);
+  const [total, setTotal] = useState(0);
+  const rate = [
+    {
+      diapazon: [0, 90],
+      value: 0.4626,
+    },
+    {
+      diapazon: [91, 150],
+      value: 0.6668,
+    },
+    {
+      diapazon: [151, 1000],
+      value: 0.8388,
+    },
+  ];
+
+  function getTotalValue(result) {
+    const kvtValue = +result['Киловатт'];
+    let totalValue = 0;
+    let currentIndex = 0;
+
+    rate.forEach((item, index) => {
+      if (index === 2) rate[2].diapazon[1] = kvtValue;
+      const currentDiapazon = item.diapazon;
+      const currentRate = item.value;
+
+      let currentValue = 0;
+
+      for (let i = currentIndex; i < currentDiapazon[1] && currentIndex < kvtValue; i++) {
+        currentValue += currentRate;
+        currentIndex++;
+        console.log(currentIndex, 'currentIndex');
+      }
+      totalValue += currentValue;
+    });
+    setTotal(totalValue);
+  }
 
   useEffect(() => {
     window.getData().then((result) => {
@@ -38,7 +76,7 @@ export default function CalculatorContainer() {
                   id={product.name}
                   name={product.name}
                   defaultValue={product.rate}
-                  ref={register({ max: 0, min: 5000, maxLength: 100 })}
+                  ref={register({ max: 5000, min: 0, maxLength: 100 })}
                 />
                 {product.prefix === 'руб.' ? <BiRuble size="18px" color="#414241" /> : <HiOutlineLightBulb size="18px" color="#414241" />}
               </div>
@@ -47,7 +85,10 @@ export default function CalculatorContainer() {
             <h1>Загрузка данных</h1>
           )}
         </div>
-        <div className={classes.totalValue}>1000 рублей</div>
+        {total > 0 ? (<div className={classes.totalValue}>{`${Math.ceil(total)} Рублей`}</div>
+        ) : (
+          <></>
+        )}
         <div className={classes.actionContainer}>
           <input className={`${classes.btn}`} value="рассчитать" type="submit" />
           <input

@@ -26,6 +26,7 @@
         "object-curly-newline": "off",
         "jsx-a11y/alt-text": "off",
         "jsx-a11y/label-has-associated-control": "off",
-        "max-len": "off"
+        "max-len": "off",
+        "no-plusplus": "off"
     }
 }
