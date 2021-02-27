@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiOutlineLightBulb } from 'react-icons/hi';
+import { FaRegQuestionCircle } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
 import Setting from '../../../../entity/Setting.js';
 import classes from './Calculator.module.css';
@@ -20,6 +21,7 @@ export default function CalculatorContainer() {
 
   return (
     <div className={classes.container}>
+      <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span>
       <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div>
           {data ? (
@@ -45,6 +47,7 @@ export default function CalculatorContainer() {
             <h1>Загрузка данных</h1>
           )}
         </div>
+        <div className={classes.totalValue}>1000 рублей</div>
         <div className={classes.actionContainer}>
           <input className={`${classes.btn}`} value="рассчитать" type="submit" />
           <input

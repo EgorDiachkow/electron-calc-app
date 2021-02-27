@@ -7,7 +7,7 @@
     position: relative;
     flex-direction: column;
     background-color: #fff;
-    padding: 9px 0;
+    padding: 0 0 8px;
     box-shadow: 1px 1px 22px 7px rgba(0,0,0,0.06);
 }
 .containerItem {
@@ -89,4 +89,13 @@
     justify-content: space-between;
     height: 100%;
     margin-top: 15px;
+}
+.totalValue {
+    font-size: 25px;
+    text-align: center;
+}
+.heplItem {
+    position: absolute;
+    left: 12px;
+    top:12px;
 }
