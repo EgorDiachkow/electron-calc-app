@@ -16,9 +16,13 @@ export default class CalculatorApp {
 
   createWindow() {
     this.window = new BrowserWindow({
-      height: 550,
-      width: 1250,
+      minHeight: 550,
+      minWidth: 850,
+      maxWidth: 850,
+      maxHeight: 550,
       show: false,
+      resizable: false,
+      fullScreenable: false,
       transparent: true,
       frame: false,
       webPreferences: {
@@ -28,7 +32,7 @@ export default class CalculatorApp {
       },
     });
     // this.getFileSetting();
-    this.window.webContents.openDevTools();
+    // this.window.webContents.openDevTools();
     // eslint-disable-next-line no-undef
     this.window.webContents.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
     this.window.on('closed', () => {
@@ -42,8 +46,8 @@ export default class CalculatorApp {
       this.window.webContents.send('entries', this.storage.get('entries'));
     });
 
-    ipcMain.on('action', (_, data) => {
-      console.log(data);
+    ipcMain.on('closeWindow', () => {
+      app.quit();
     });
   }
 
