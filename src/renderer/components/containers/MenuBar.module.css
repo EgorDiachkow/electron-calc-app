@@ -42,26 +42,4 @@
 .iconSave {
     bottom: 50px;
     top: auto;
-    /* animation: jump .9s infinite; */
-
-}
-@keyframes jump {
-    0% {
-        width: 40px;
-    }
-    50% {
-        width: 40px;
-    }
-    55% {
-        width: 50px;
-    }
-    65%{
-        width: 50px;
-    }
-    95% {
-        width: 40px;
-    }
-    100% {
-        width: 40px;
-    }
 }

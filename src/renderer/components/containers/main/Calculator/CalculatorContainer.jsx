@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
+import ReactTooltip from 'react-tooltip';
 import Setting from '../../../../entity/Setting.js';
 import classes from './Calculator.module.css';
 
@@ -62,7 +63,17 @@ export default function CalculatorContainer() {
 
   return (
     <div className={classes.container}>
-      <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span>
+      <span className={classes.heplItem} data-tip data-for="help"><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span>
+      <ReactTooltip place="right" effect="solid" id="help">
+        <div> Тарифы </div>
+        {data ? (
+          data[0].rate.map((item) => (
+            <div>{`Диапазон ${item.diapazon[0]} - ${item.diapazon[1]} : ${item.value}`}</div>
+          ))
+        ) : (
+          <></>
+        )}
+      </ReactTooltip>
       <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div>
           {data ? (
@@ -86,15 +97,15 @@ export default function CalculatorContainer() {
               </div>
             ))
           ) : (
-              <h1>Загрузка данных</h1>
-            )}
+            <h1>Загрузка данных</h1>
+          )}
         </div>
         {total > 0 ? (<div className={classes.totalValue}>{`${total} Рублей`}</div>
         ) : (
-            <></>
-          )}
+          <></>
+        )}
         <div className={classes.actionContainer}>
-          <input className={`${classes.btn}`} value="рассчитать" type="submit" />
+          <input className={`${classes.btn}`} value="Рассчитать" type="submit" />
           <input
             className={`${classes.btn} ${classes.reset}`}
             type="reset"
