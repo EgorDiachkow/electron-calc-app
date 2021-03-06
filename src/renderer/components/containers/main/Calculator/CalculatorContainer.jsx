@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiOutlineLightBulb } from 'react-icons/hi';
-import { FaRegQuestionCircle } from 'react-icons/fa';
+import { FaRegQuestionCircle, FaSave } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
+import ReactTooltip from 'react-tooltip';
 import RateToolTip from '../../toolTip/RateToolTip.jsx';
 import Setting from '../../../../entity/Setting.js';
 import classes from './Calculator.module.css';
@@ -63,6 +64,8 @@ export default function CalculatorContainer() {
 
   return (
     <div className={classes.container}>
+      <div className={classes.iconSave} data-tip="Сохраните платёж"><FaSave size="18px" color="#fff" /></div>
+      <ReactTooltip place="bottom" effect="solid" />
       <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span>
       <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div>
