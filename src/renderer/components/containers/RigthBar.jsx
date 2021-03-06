@@ -1,19 +1,21 @@
 import React from 'react';
 import { FiSettings } from 'react-icons/fi';
-import { FaSave } from 'react-icons/fa';
-import { Route } from 'react-router-dom';
-import ReactTooltip from 'react-tooltip';
+import { Route, NavLink } from 'react-router-dom';
 import classes from './MenuBar.module.css';
 import StatistickContainer from './main/statistick/StatistickContainer.jsx';
 import CalculatorContainer from './main/Calculator/CalculatorContainer.jsx';
+import MainSetting from './setting/MainSetting.jsx';
 
 export default function rightMenuBar() {
   return (
     <div className={classes.containerrigtht}>
-      <div className={classes.iconSetting}><FiSettings size="18px" color="#fff" /></div>
-      <Route exact path="/">1</Route>
+      <NavLink to="/setting">
+        <div className={classes.iconSetting}><FiSettings size="18px" color="#fff" /></div>
+      </NavLink>
       <Route path="/raschet"><CalculatorContainer /></Route>
+      <Route path="/setting"><MainSetting /></Route>
       <Route path="/state"><StatistickContainer /></Route>
+      <Route exact path="/">1</Route>
     </div>
   );
 }

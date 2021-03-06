@@ -1,0 +1,25 @@
+.container{
+    background-color: #fff;
+    box-shadow: 1px 1px 22px 7px rgba(0,0,0,0.06);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titleBlock {
+    text-align: center;
+    font-size: 25px;
+    margin: 10px 0;
+    color: #232323;
+}
+.wrapper{
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+.item {
+    font-size: 22px;
+    cursor: pointer;
+    padding: 10px 50px;
+    border: 1px solid;
+}

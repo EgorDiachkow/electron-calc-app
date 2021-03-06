@@ -91,7 +91,7 @@ export default function CalculatorContainer() {
               </div>
             ))
           ) : (
-            <h1>Загрузка данных</h1>
+            <></>
           )}
         </div>
         {total > 0 ? (<div className={classes.totalValue}>{`${total} Рублей`}</div>
