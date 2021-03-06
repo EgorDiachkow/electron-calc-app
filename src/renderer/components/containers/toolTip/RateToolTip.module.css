@@ -1,0 +1,14 @@
+.title{
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+}
+.item{
+    font-size: 14px;
+    margin: 5px 0;
+}
+.rateValue{
+    border-bottom: 1px solid;
+}
