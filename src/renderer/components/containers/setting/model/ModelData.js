@@ -1,5 +1,5 @@
 const data = {
-  priceRate: [
+  rate: [
     {
       id: 1,
       diapason: [0, 0],
@@ -16,7 +16,7 @@ const data = {
       value: 0,
     },
   ],
-  services: [
+  servises: [
     {
       id: 1,
       name: 'Квартплата',

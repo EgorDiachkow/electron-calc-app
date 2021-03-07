@@ -38,7 +38,8 @@ export default function MainSetting() {
 
   useEffect(() => {
     window.getData().then((result) => {
-      const settingProfile = new Setting(result.rate, result.servises);
+      const availableData = result === null ? dataModel : result;
+      const settingProfile = new Setting(availableData.rate, availableData.servises);
 
       setDataRate([settingProfile]);
     });
