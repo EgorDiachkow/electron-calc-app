@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { BiRuble } from 'react-icons/bi';
 import classes from './MainSetting.module.css';
 import dataModel from './model/ModelData.js';
 import Setting from '../../../entity/Setting.js';
@@ -47,10 +48,9 @@ export default function MainSetting() {
 
   return (
     <div className={classes.container}>
-      <div className={classes.titleBlock}>Настройки</div>
       <div className={classes.wrapper}>
         <div className={classes.item}>
-          тарифы
+          <span className={classes.titleSetting}>Тарифы</span>
           <form onSubmit={handleSubmit(onSubmit)}>
             {dataRate ? (
               dataRate[0].servises.map((product) => (
@@ -58,45 +58,57 @@ export default function MainSetting() {
                   <div key={product.id}>
                     <label
                       htmlFor={product.name}
+                      className={classes.inputILabel}
                     >
                       {product.name}
                     </label>
                     <input
+                      className={classes.inputItem}
                       id={product.name}
                       defaultValue={product.rate}
                       name={product.name}
                       ref={register()}
                     />
+                    <BiRuble size="18px" color="#414241" />
                   </div>
                 )
               ))
             ) : (
               <></>
             )}
-            {dataRate ? (
-              dataRate[0].rate.map((product) => (
-                <div key={product.id}>
-                  <input
-                    defaultValue={product.diapason[0]}
-                    name={`${product.id}.diapason[0]`}
-                    ref={register()}
-                  />
-                  <input
-                    defaultValue={product.diapason[1]}
-                    name={`${product.id}.diapason[1]`}
-                    ref={register()}
-                  />
-                  <input
-                    defaultValue={product.value}
-                    name={`${product.id}.value`}
-                    ref={register()}
-                  />
-                </div>
-              ))
-            ) : (
-              <></>
-            )}
-            <input value="сохранить" onClick={saveData} type="submit" />
+            <div className={classes.containerRate}>
+              <span className={`${classes.inputILabel} ${classes.title}`}>Электроэнергия</span>
+              {dataRate ? (
+                dataRate[0].rate.map((product) => (
+                  <div key={product.id}>
+                    <span className={classes.inputILabel}>от</span>
+                    <input
+                      className={classes.inputItem}
+                      defaultValue={product.diapason[0]}
+                      name={`${product.id}.diapason[0]`}
+                      ref={register()}
+                    />
+                    <span className={classes.inputILabel}>до</span>
+                    <input
+                      className={classes.inputItem}
+                      defaultValue={product.diapason[1]}
+                      name={`${product.id}.diapason[1]`}
+                      ref={register()}
+                    />
+                    <span className={`${classes.inputILabel} ${classes.value}`}>тариф</span>
+                    <input
+                      className={classes.inputItem}
+                      defaultValue={product.value}
+                      name={`${product.id}.value`}
+                      ref={register()}
+                    />
+                  </div>
+                ))
+              ) : (
+                <></>
+              )}
+            </div>
+            <input className={`${classes.btn}`} value="Сохранить" onClick={saveData} type="submit" />
           </form>
         </div>
       </div>

@@ -79,9 +79,15 @@
     background-color: #1BABBF;
     width: 100%;
 }
+.btn:hover {
+    background-color: #18a2b4;
+}
 .reset {
     max-width: 110px;
     background-color: rgba(36,36,36,.8);
+}
+.reset:hover {
+    background-color: rgba(27, 27, 27, 0.8);
 }
 .formContainer{
     display: flex;

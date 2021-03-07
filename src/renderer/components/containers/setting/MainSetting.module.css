@@ -6,22 +6,90 @@
     flex-direction: column;
     align-items: center;
 }
-.titleBlock {
-    text-align: center;
-    font-size: 25px;
-    margin: 20px 0 10px;
-    padding: 0 70px 10px;
-    color: #232323;
-    border-bottom: 1px solid;
-}
 .wrapper{
-    padding: 15px;
+    padding: 10px;
     display: flex;
     justify-content: flex-start;
 }
 .item {
     font-size: 22px;
     cursor: pointer;
-    padding: 10px 50px;
-    border: 1px solid;
+    padding: 0px 30px;
+}
+.titleSetting{
+    text-align: center;
+    margin-bottom: 10px;
+    display: block;
+}
+.inputItem{
+    border: 0;
+    border-bottom: 1px solid #888;
+    font-size: 21px;
+    width: 103px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 5px;
+    outline: none;
+    position: relative;
+    color: #414241;
+}
+.inputItem:focus:after{
+    position: absolute;
+    content: ' ';
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #1BABBF;
+    transition: all 0.2s ease;
+}
+.inputILabel{
+    letter-spacing: 2px;
+    line-height: 36px;
+    text-indent: 10px;
+    text-transform: uppercase;
+    width: 141px;
+    display: inline-block;
+    text-align: left;
+    font-size: 15px;
+}
+.inputTitle{
+    width: 90px;
+    display: inline-block;
+    margin-right: 5px;
+}
+.btn {
+    padding: 12px;
+    outline: none;
+    margin: 0 4px;
+    color: #fff;
+    cursor: pointer;
+    max-width: 200px;
+    border: none;
+    font-size: 18px;
+    background-color: #1BABBF;
+    width: 100%;
+    margin-left: 57px;
+}
+.btn:hover {
+    background-color: #18a2b4;
+}
+.containerRate .inputILabel{
+    width: 34px;
+    font-size:13px;
+}
+.containerRate .inputILabel.value{
+    width: 70px;
+}
+.containerRate .inputILabel.title{
+    width: auto;
+}
+.containerRate .inputItem{
+    width: 50px;
+}
+.containerRate .inputItem:last-child{
+    width: 70px;
+}
+.containerRate {
+    margin: 20px 0 15px -30px;
 }
