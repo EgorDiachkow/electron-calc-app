@@ -9,8 +9,10 @@
 .titleBlock {
     text-align: center;
     font-size: 25px;
-    margin: 10px 0;
+    margin: 20px 0 10px;
+    padding: 0 70px 10px;
     color: #232323;
+    border-bottom: 1px solid;
 }
 .wrapper{
     padding: 15px;

@@ -27,6 +27,7 @@
         "jsx-a11y/alt-text": "off",
         "jsx-a11y/label-has-associated-control": "off",
         "max-len": "off",
-        "no-plusplus": "off"
+        "no-plusplus": "off",
+        "no-nested-ternary": "off"
     }
 }

@@ -15,6 +15,7 @@ export default function CalculatorContainer() {
   const [data, setData] = useState(false);
   const [total, setTotal] = useState(0);
   const [totalRate, setTotalRate] = useState();
+  const [titeleValue, setTiteleValue] = useState();
 
   function getEnergyValue(result) {
     const kvtValue = +result['Киловатт'];
@@ -36,6 +37,10 @@ export default function CalculatorContainer() {
     return Math.ceil(totalValue);
   }
 
+  function declOfNum(n, titles) {
+    return titles[(n % 10 === 1 && n % 100 !== 11) ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
+  }
+
   function getTotalValue(result) {
     const listItem = Object.entries(result);
     let totalValue = 0;
@@ -46,6 +51,7 @@ export default function CalculatorContainer() {
       }
     });
     totalValue += getEnergyValue(result);
+    setTiteleValue(declOfNum(totalValue, ['рубль', 'рубля', 'рублей']));
     setTotal(totalValue);
   }
 
@@ -94,7 +100,7 @@ export default function CalculatorContainer() {
             <></>
           )}
         </div>
-        {total > 0 ? (<div className={classes.totalValue}>{`${total} Рублей`}</div>
+        {total > 0 ? (<div className={classes.totalValue}>{`${total} ${titeleValue}`}</div>
         ) : (
           <></>
         )}
