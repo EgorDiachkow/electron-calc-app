@@ -10,8 +10,8 @@ export default function RateToolTip(props) {
       <div className={classes.title}>Тариф на электроэнергию</div>
       {
         rate.map((item) => (
-          <div className={classes.item} key={item.diapazon}>
-            {`Диапазон ${item.diapazon[0]} - ${item.diapazon[1]} : `}
+          <div className={classes.item} key={item.diapason}>
+            {`Диапазон ${item.diapason[0]} - ${item.diapason[1]} : `}
             <span className={classes.rateValue}>{item.value}</span>
           </div>
         ))

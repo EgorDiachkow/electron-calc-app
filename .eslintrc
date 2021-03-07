@@ -28,6 +28,8 @@
         "jsx-a11y/label-has-associated-control": "off",
         "max-len": "off",
         "no-plusplus": "off",
-        "no-nested-ternary": "off"
+        "no-nested-ternary": "off",
+        "no-param-reassign": "off",
+        "prefer-destructuring": "off"
     }
 }

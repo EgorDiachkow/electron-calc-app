@@ -25,9 +25,9 @@ export default function CalculatorContainer() {
     data[0].rate.forEach((item, index) => {
       let currentValue = 0;
 
-      if (index === 2) data[0].rate[2].diapazon[1] = kvtValue;
+      if (index === 2) data[0].rate[2].diapason[1] = kvtValue;
 
-      for (let i = currentIndex; i < item.diapazon[1] && currentIndex < kvtValue; i++) {
+      for (let i = currentIndex; i < item.diapason[1] && currentIndex < kvtValue; i++) {
         currentValue += item.value;
         currentIndex++;
       }
@@ -62,7 +62,7 @@ export default function CalculatorContainer() {
 
   useEffect(() => {
     window.getData().then((result) => {
-      const settingProfile = new Setting(result.priceRate, result.services);
+      const settingProfile = new Setting(result.rate, result.servises);
 
       setData([settingProfile]);
     });
@@ -75,6 +75,23 @@ export default function CalculatorContainer() {
       <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span>
       <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div>
+          <div>
+            <label
+              htmlFor="Киловатт"
+              className={classes.inputILabel}
+            >
+              Киловатт
+            </label>
+            <input
+              className={classes.inputItem}
+              id="Киловатт"
+              name="Киловатт"
+              disabled={false}
+              defaultValue=""
+              ref={register({ max: 5000, min: 1, maxLength: 100 })}
+            />
+            <HiOutlineLightBulb style={{ cursor: 'pointer' }} data-tip data-for="help" size="18px" color="#414241" />
+          </div>
           {data ? (
             data[0].servises.map((product) => (
               <div key={product.id}>
@@ -92,7 +109,7 @@ export default function CalculatorContainer() {
                   defaultValue={product.name === 'Энергия' ? totalRate : product.rate}
                   ref={register({ max: 5000, min: 1, maxLength: 100 })}
                 />
-                {product.prefix === 'руб.' ? <BiRuble size="18px" color="#414241" /> : <HiOutlineLightBulb style={{ cursor: 'pointer' }} data-tip data-for="help" size="18px" color="#414241" />}
+                <BiRuble size="18px" color="#414241" />
                 <RateToolTip rate={data[0].rate} />
               </div>
             ))

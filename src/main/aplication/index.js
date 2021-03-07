@@ -42,8 +42,13 @@ export default class CalculatorApp {
     this.window.on('ready-to-show', () => {
       this.window.show();
     });
-    ipcMain.on('nameChenel', () => {
+
+    ipcMain.on('getData', () => {
       this.window.webContents.send('entries', this.storage.get('entries'));
+    });
+
+    ipcMain.on('setData', (_, data) => {
+      this.window.webContents.send('test', this.storage.set('entries', data));
     });
 
     ipcMain.on('closeWindow', () => {
