@@ -53,19 +53,21 @@ export default function MainSetting() {
           <form onSubmit={handleSubmit(onSubmit)}>
             {dataRate ? (
               dataRate[0].servises.map((product) => (
-                <div key={product.id}>
-                  <label
-                    htmlFor={product.name}
-                  >
-                    {product.name}
-                  </label>
-                  <input
-                    id={product.name}
-                    defaultValue={product.rate}
-                    name={product.name}
-                    ref={register()}
-                  />
-                </div>
+                product.name === 'Энергия' ? (null) : (
+                  <div key={product.id}>
+                    <label
+                      htmlFor={product.name}
+                    >
+                      {product.name}
+                    </label>
+                    <input
+                      id={product.name}
+                      defaultValue={product.rate}
+                      name={product.name}
+                      ref={register()}
+                    />
+                  </div>
+                )
               ))
             ) : (
               <></>
