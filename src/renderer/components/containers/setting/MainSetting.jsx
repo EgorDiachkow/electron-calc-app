@@ -12,6 +12,10 @@ export default function MainSetting() {
   const onSubmit = (result) => createModelServises(result);
 
   function saveData(data) {
+    const myNotification = new Notification('Калькулятор', {
+      body: 'Данные сохранены',
+    });
+
     window.setData(data[0]);
   }
 
