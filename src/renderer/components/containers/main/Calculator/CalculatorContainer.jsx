@@ -5,6 +5,7 @@ import { FaRegQuestionCircle, FaSave } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
 import ReactTooltip from 'react-tooltip';
 import RateToolTip from '../../toolTip/RateToolTip.jsx';
+import declOfNum from '../../../../optional/declOfNum.js';
 import Setting from '../../../../entity/Setting.js';
 import classes from './Calculator.module.css';
 
@@ -35,10 +36,6 @@ export default function CalculatorContainer() {
     });
     setTotalRate(Math.ceil(totalValue));
     return Math.ceil(totalValue);
-  }
-
-  function declOfNum(n, titles) {
-    return titles[(n % 10 === 1 && n % 100 !== 11) ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
   }
 
   function getTotalValue(result) {
