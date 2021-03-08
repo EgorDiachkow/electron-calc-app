@@ -12,11 +12,10 @@ export default function MainSetting() {
   const onSubmit = (result) => createModelServises(result);
 
   function saveData(data) {
+    window.setData(data[0]);
     const myNotification = new Notification('Калькулятор', {
       body: 'Данные сохранены',
     });
-
-    window.setData(data[0]);
   }
 
   function createModelRate(data) {
@@ -112,7 +111,7 @@ export default function MainSetting() {
                 <></>
               )}
             </div>
-            <input className={`${classes.btn}`} value="Сохранить" onClick={saveData} type="submit" />
+            <input className={`${classes.btn}`} value="Сохранить" type="submit" />
           </form>
         </div>
       </div>

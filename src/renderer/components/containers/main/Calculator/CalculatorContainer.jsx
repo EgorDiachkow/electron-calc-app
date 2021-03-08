@@ -4,6 +4,8 @@ import { HiOutlineLightBulb } from 'react-icons/hi';
 import { FaRegQuestionCircle, FaSave } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
 import ReactTooltip from 'react-tooltip';
+import SavePopUp from '../../../modal/SavePopUp.jsx';
+import dataModel from '../../setting/model/ModelData.js';
 import RateToolTip from '../../toolTip/RateToolTip.jsx';
 import declOfNum from '../../../../optional/declOfNum.js';
 import Setting from '../../../../entity/Setting.js';
@@ -17,6 +19,7 @@ export default function CalculatorContainer() {
   const [total, setTotal] = useState(0);
   const [totalRate, setTotalRate] = useState();
   const [titeleValue, setTiteleValue] = useState();
+  const [openFlag, setOpenFlag] = useState(false);
 
   function getEnergyValue(result) {
     const kvtValue = +result['Киловатт'];
@@ -52,6 +55,10 @@ export default function CalculatorContainer() {
     setTotal(totalValue);
   }
 
+  function handleCloseModal() {
+    setOpenFlag(false);
+  }
+
   function reserValue() {
     setTotalRate('');
     setTotal('');
@@ -59,7 +66,8 @@ export default function CalculatorContainer() {
 
   useEffect(() => {
     window.getData().then((result) => {
-      const settingProfile = new Setting(result.rate, result.servises);
+      const availableData = result === null ? dataModel : result;
+      const settingProfile = new Setting(availableData.rate, availableData.servises);
 
       setData([settingProfile]);
     });
@@ -67,7 +75,10 @@ export default function CalculatorContainer() {
 
   return (
     <div className={classes.container}>
-      <div className={classes.iconSave} data-tip="Сохраните платёж"><FaSave size="18px" color="#fff" /></div>
+      <div className={classes.iconSave} data-tip="Сохраните платёж">
+        <FaSave onClick={() => { setOpenFlag(true); }} size="18px" color="#fff" />
+        <SavePopUp total={total} openFlag={openFlag} handleCloseModal={handleCloseModal} />
+      </div>
       <ReactTooltip place="bottom" effect="solid" />
       <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span>
       <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>

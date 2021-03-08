@@ -2,17 +2,17 @@ const data = {
   rate: [
     {
       id: 1,
-      diapason: [0, 0],
+      diapason: [0, 90],
       value: 0,
     },
     {
       id: 2,
-      diapason: [0, 0],
+      diapason: [91, 150],
       value: 0,
     },
     {
       id: 3,
-      diapason: [0, 0],
+      diapason: [151, 1000],
       value: 0,
     },
   ],

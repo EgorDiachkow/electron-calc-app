@@ -1,0 +1,58 @@
+.popUpwrap{
+    right: 133px!important;
+    top: 20%!important;
+    width: 304px!important;
+    height: 160px;
+}
+.closeBtn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    z-index: 9999999;
+}
+.title{
+    font-size:20px;
+    display: block;
+    text-align: center;
+    padding-top: 5px;
+    width: 200px;
+    margin: 0 auto;
+}
+.containerForm{
+    text-align: center;
+}
+.subtitle{
+    margin-top: 10px;
+    font-size:16px;
+    display: block;
+    text-align: center;
+}
+select{
+    width: 160px;
+    padding: 6px 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    outline: none;
+}
+.itemInputYear{
+    width: 55px;
+    font-size: 15px;
+    padding: 6px 5px;
+    outline: none;
+    margin-left: 10px;
+}
+.btn {
+    width: 239px;
+    background-color: #1BABBF;
+    padding: 8px;
+    border: none;
+    color: #fff;
+    margin-top: 12px;
+    font-size: 17px;
+    outline: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #18a2b4;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoClose, IoCloseSharp, IoCloseOutline } from 'react-icons/io5';
+import { IoCloseOutline } from 'react-icons/io5';
 import classes from './PanelMenu.module.css';
 
 export default function PanelMenuContainer() {
