@@ -81,6 +81,7 @@ export default function CalculatorContainer() {
       </div>
       <ReactTooltip place="bottom" effect="solid" />
       <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span>
+      <div className={classes.titelContainer}>Расчёт</div>
       <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <div>

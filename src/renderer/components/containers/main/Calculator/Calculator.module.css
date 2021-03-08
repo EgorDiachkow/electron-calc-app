@@ -10,6 +10,10 @@
     padding: 0 0 8px;
     box-shadow: 1px 1px 22px 7px rgba(0,0,0,0.06);
 }
+.titelContainer{
+    font-size: 26px;
+    margin-top: 7px;
+}
 .containerItem {
     display: flex;
     justify-content: center;
@@ -48,7 +52,7 @@
 }
 .inputILabel{
     letter-spacing: 2px;
-    line-height: 50px;
+    line-height: 45px;
     text-indent: 10px;
     text-transform: uppercase;
     width: 141px;
@@ -94,7 +98,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 .totalValue {
     font-size: 25px;
