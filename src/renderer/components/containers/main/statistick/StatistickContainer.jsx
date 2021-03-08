@@ -65,7 +65,7 @@ export default function StatistickContainer() {
         </div>
         {stateDate ? (
           stateDate.map((elem) => (
-            <div className={`${classes.item}`}>
+            <div key={elem[1]} className={`${classes.item}`}>
               <span>{elem[0]}</span>
               <span>{`${elem[1]} р.`}</span>
             </div>
