@@ -19,3 +19,6 @@ a{
   -webkit-user-select: none;
 -moz-user-select: none;
 }
+body::-webkit-scrollbar-track {
+  background: orange;        /* цвет дорожки */
+}

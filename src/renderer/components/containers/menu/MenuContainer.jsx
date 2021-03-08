@@ -18,12 +18,6 @@ export default function MenuContainer() {
           <span className={classes.titleItem}>Статистика</span>
         </div>
       </NavLink>
-      <NavLink activeClassName={classes.active} className={classes.linkItem} to="/login">
-        <div className={classes.containerItem}>
-          <IoEnter size="25px" color="#fff" />
-          <span className={classes.titleItem}>Регистрация</span>
-        </div>
-      </NavLink>
     </div>
   );
 }
