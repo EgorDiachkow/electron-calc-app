@@ -2,11 +2,12 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { IoCloseOutline } from 'react-icons/io5';
 import classes from './SavePopUp.module.css';
+import ModelStatistick from '../../model/ModelStatistic.js';
 
 const modalStyle = {
   content: {
@@ -30,16 +31,31 @@ const modalStyle = {
 ReactModal.setAppElement('#root');
 
 export default function SavePopUp(props) {
+  const [stateDate, setStateDate] = useState([]);
   const { register, handleSubmit, errors } = useForm();
   // eslint-disable-next-line no-use-before-define
   const onSubmit = (when) => createdStatisticsModel(when, props.total);
 
   function createdStatisticsModel(when, total) {
-    const combinedWhen = `${when.date.year}-${when.date.month}-${new Date().getDate()}`;
-    const result = { when: combinedWhen, total };
+    if (total !== 0) {
+      const combinedWhen = `${when.date.year}-${when.date.month}-${new Date().getDate()}`;
 
-    props.handleCloseModal();
+      stateDate.statistick.push({ id: 2, when: combinedWhen, total });
+      window.setStatistic(stateDate);
+      props.handleCloseModal();
+    } else {
+      alert('Вы не рассчитали платёж');
+      props.handleCloseModal();
+    }
   }
+
+  useEffect(() => {
+    window.getStatistic().then((result) => {
+      const availableData = result === null ? ModelStatistick : result;
+
+      setStateDate(availableData);
+    });
+  }, []);
 
   return (
     <ReactModal style={modalStyle} className={classes.popUpwrap} isOpen={props.openFlag} onRequestClose={props.handleCloseModal}>
