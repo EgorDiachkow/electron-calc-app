@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { BiRuble } from 'react-icons/bi';
 import classes from './MainSetting.module.css';
-import dataModel from './model/ModelData.js';
+import dataModel from '../../../model/ModelData.js';
 import Setting from '../../../entity/Setting.js';
 
 export default function MainSetting() {

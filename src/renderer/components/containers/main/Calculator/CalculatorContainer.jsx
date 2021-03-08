@@ -5,7 +5,7 @@ import { FaRegQuestionCircle, FaSave } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
 import ReactTooltip from 'react-tooltip';
 import SavePopUp from '../../../modal/SavePopUp.jsx';
-import dataModel from '../../setting/model/ModelData.js';
+import dataModel from '../../../../model/ModelData.js';
 import RateToolTip from '../../toolTip/RateToolTip.jsx';
 import declOfNum from '../../../../optional/declOfNum.js';
 import Setting from '../../../../entity/Setting.js';

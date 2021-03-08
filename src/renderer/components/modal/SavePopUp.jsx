@@ -31,7 +31,15 @@ ReactModal.setAppElement('#root');
 
 export default function SavePopUp(props) {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data, props.total);
+  // eslint-disable-next-line no-use-before-define
+  const onSubmit = (when) => createdStatisticsModel(when, props.total);
+
+  function createdStatisticsModel(when, total) {
+    const combinedWhen = `${when.date.year}-${when.date.month}-${new Date().getDate()}`;
+    const result = { when: combinedWhen, total };
+
+    props.handleCloseModal();
+  }
 
   return (
     <ReactModal style={modalStyle} className={classes.popUpwrap} isOpen={props.openFlag} onRequestClose={props.handleCloseModal}>
@@ -42,18 +50,18 @@ export default function SavePopUp(props) {
       <div className={classes.containerForm}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <select name="date.month" ref={register}>
-            <option value="Январь">Январь</option>
-            <option value="Февраль">Февраль</option>
-            <option value="Март">Март</option>
-            <option value="Апрель">Апрель</option>
-            <option value="Март">Март</option>
-            <option value="Июнь">Июнь</option>
-            <option value="Июль">Июль</option>
-            <option value="Август">Август</option>
-            <option value="Сентябрь">Сентябрь</option>
-            <option value="Октябрь">Октябрь</option>
-            <option value="Ноябрь">Ноябрь</option>
-            <option value="Декабрь">Декабрь</option>
+            <option value="01">Январь</option>
+            <option value="02">Февраль</option>
+            <option value="03">Март</option>
+            <option value="04">Апрель</option>
+            <option value="05">Март</option>
+            <option value="06">Июнь</option>
+            <option value="07">Июль</option>
+            <option value="08">Август</option>
+            <option value="09">Сентябрь</option>
+            <option value="10">Октябрь</option>
+            <option value="11">Ноябрь</option>
+            <option value="12">Декабрь</option>
           </select>
           <input className={classes.itemInputYear} type="number" name="date.year" defaultValue="2021" ref={register} />
           <input className={classes.btn} type="submit" />
