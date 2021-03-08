@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LineChart } from 'react-chartkick';
 import 'chart.js';
+import ModelStatistick from '../../../../model/ModelStatistic.js';
 import classes from './Statistick.module.css';
 
 export default function StatistickContainer() {
+  const [stateDate, setStateDate] = useState([]);
+
+  function createdModelDate(data) {
+    const listData = Object.entries(data.statistick);
+    const statistickItems = [];
+
+    listData.forEach((item) => {
+      statistickItems.push([item[1].when, item[1].total]);
+    });
+    setStateDate(statistickItems);
+  }
+
+  useEffect(() => {
+    window.getStatistic().then((result) => {
+      const availableData = result === null ? ModelStatistick : result;
+      createdModelDate(availableData);
+    });
+  }, []);
+
   return (
     <div className={classes.container}>
-      <LineChart data={[['2021-01-8', 1231], ['2021-02-10', 1300]]} />
+      <LineChart data={stateDate} />
     </div>
   );
 }

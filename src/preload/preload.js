@@ -10,6 +10,11 @@ window.setData = (a) => new Promise((resolve) => {
   ipcRenderer.once('test', (_, data) => resolve(data));
 });
 
+window.getStatistic = () => new Promise((resolve) => {
+  ipcRenderer.send('getStatistic');
+  ipcRenderer.once('entriesState', (_, data) => resolve(data));
+});
+
 window.closeWindowApp = () => {
   ipcRenderer.send('closeWindow');
 };

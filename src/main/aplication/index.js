@@ -51,6 +51,10 @@ export default class CalculatorApp {
       this.window.webContents.send('test', this.storage.set('entries', data));
     });
 
+    ipcMain.on('getStatistic', () => {
+      this.window.webContents.send('entriesState', this.storage.get('statistic'));
+    });
+
     ipcMain.on('closeWindow', () => {
       app.quit();
     });
