@@ -70,7 +70,7 @@ export default function SavePopUp(props) {
             <option value="02">Февраль</option>
             <option value="03">Март</option>
             <option value="04">Апрель</option>
-            <option value="05">Март</option>
+            <option value="05">Май</option>
             <option value="06">Июнь</option>
             <option value="07">Июль</option>
             <option value="08">Август</option>
@@ -80,7 +80,7 @@ export default function SavePopUp(props) {
             <option value="12">Декабрь</option>
           </select>
           <input className={classes.itemInputYear} type="number" name="date.year" defaultValue="2021" ref={register} />
-          <input className={classes.btn} type="submit" />
+          <input className={classes.btn} type="submit" value="Сохранить" />
         </form>
       </div>
     </ReactModal>
