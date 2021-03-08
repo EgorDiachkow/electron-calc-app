@@ -15,7 +15,7 @@ export default function StatistickContainer() {
       statistickItems.push([item[1].when, item[1].total]);
     });
 
-    setStateDate(statistickItems);
+    setStateDate(statistickItems.reverse());
   }
 
   useEffect(() => {
@@ -28,6 +28,17 @@ export default function StatistickContainer() {
 
   return (
     <div className={classes.container}>
+      <div className={classes.containerTitle}>Статистика оплат</div>
+      <div className={classes.containerTotal}>
+        <div className={classes.totalItem}>
+          Всего за текущий год:
+          <div className={classes.totalValue}>2000р</div>
+        </div>
+        <div className={classes.totalItem}>
+          За всё время:
+          <div className={classes.totalValue}>2000р</div>
+        </div>
+      </div>
       <div className={classes.items}>
         <div className={`${classes.item} ${classes.title}`}>
           <span>Дата</span>
@@ -44,7 +55,7 @@ export default function StatistickContainer() {
           <></>
         )}
       </div>
-      <LineChart height="200px" data={stateDate} />
-    </div >
+      <LineChart height="160px" data={stateDate} />
+    </div>
   );
 }
