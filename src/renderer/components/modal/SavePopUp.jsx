@@ -33,14 +33,19 @@ ReactModal.setAppElement('#root');
 export default function SavePopUp(props) {
   const [stateDate, setStateDate] = useState([]);
   const { register, handleSubmit, errors } = useForm();
+  const [flegUseModel, setFlegUseModel] = useState(false);
   // eslint-disable-next-line no-use-before-define
   const onSubmit = (when) => createdStatisticsModel(when, props.total);
+
+  const filteredEmprySave = (item) => item.total !== 0;
 
   function createdStatisticsModel(when, total) {
     if (total !== 0) {
       const combinedWhen = `${when.date.year}-${when.date.month}-${new Date().getDate()}`;
 
       stateDate.statistick.push({ id: 2, when: combinedWhen, total });
+      stateDate.statistick = stateDate.statistick.filter(filteredEmprySave);
+
       window.setStatistic(stateDate);
       props.handleCloseModal();
     } else {
@@ -52,7 +57,7 @@ export default function SavePopUp(props) {
   useEffect(() => {
     window.getStatistic().then((result) => {
       const availableData = result === null ? ModelStatistick : result;
-
+      if (result === null) setFlegUseModel(true);
       setStateDate(availableData);
     });
   }, []);

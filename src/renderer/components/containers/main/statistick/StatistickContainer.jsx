@@ -71,8 +71,8 @@ export default function StatistickContainer() {
             </div>
           ))
         ) : (
-          <></>
-        )}
+            <></>
+          )}
       </div>
       <LineChart height="160px" data={stateDate} />
     </div>
