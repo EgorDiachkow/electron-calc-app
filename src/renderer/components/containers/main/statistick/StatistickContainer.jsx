@@ -39,9 +39,7 @@ export default function StatistickContainer() {
 
   useEffect(() => {
     window.getStatistic().then((result) => {
-      const availableData = result === null ? ModelStatistick : result;
-
-      createdModelDate(availableData);
+      if (result !== null) createdModelDate(result);
     });
   }, []);
 
@@ -71,8 +69,8 @@ export default function StatistickContainer() {
             </div>
           ))
         ) : (
-            <></>
-          )}
+          <></>
+        )}
       </div>
       <LineChart height="160px" data={stateDate} />
     </div>
