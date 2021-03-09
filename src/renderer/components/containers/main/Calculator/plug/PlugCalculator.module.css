@@ -1,0 +1,36 @@
+.container{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.messageContainer{
+    margin-bottom: 30px;
+}
+.messageTitle{
+    font-size:20px;
+    margin-top: 5px;
+}
+.title{
+    text-align: center;
+    font-size: 26px;
+}
+.btn {
+    user-select:none;
+    text-align: center;
+    padding: 12px;
+    outline: none;
+    margin: 0 4px;
+    color: #fff;
+    cursor: pointer;
+    max-width: 200px;
+    border: none;
+    font-size: 18px;
+    background-color: #1BABBF;
+    width: 100%;
+}
+.btn:hover {
+    background-color: #18a2b4;
+}
