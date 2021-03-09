@@ -59,7 +59,7 @@ export default function StatistickContainer() {
       <div className={classes.items}>
         <div className={`${classes.item} ${classes.title}`}>
           <span>Дата</span>
-          <span>Стоимость</span>
+          <span>Оплата</span>
         </div>
         {stateDate ? (
           stateDate.map((elem) => (
