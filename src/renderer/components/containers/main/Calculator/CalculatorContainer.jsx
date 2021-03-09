@@ -5,7 +5,6 @@ import { FaRegQuestionCircle, FaSave } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
 import ReactTooltip from 'react-tooltip';
 import SavePopUp from '../../../modal/SavePopUp.jsx';
-import dataModel from '../../../../model/ModelData.js';
 import RateToolTip from '../../toolTip/RateToolTip.jsx';
 import declOfNum from '../../../../optional/declOfNum.js';
 import Setting from '../../../../entity/Setting.js';
@@ -20,6 +19,7 @@ export default function CalculatorContainer() {
   const [totalRate, setTotalRate] = useState();
   const [titeleValue, setTiteleValue] = useState();
   const [openFlag, setOpenFlag] = useState(false);
+  const [checkuseModel, setCheckuseModel] = useState(false);
 
   function getEnergyValue(result) {
     const kvtValue = +result['Киловатт'];
@@ -66,10 +66,14 @@ export default function CalculatorContainer() {
 
   useEffect(() => {
     window.getData().then((result) => {
-      const availableData = result === null ? dataModel : result;
-      const settingProfile = new Setting(availableData.rate, availableData.servises);
+      if (result !== null) {
+        const settingProfile = new Setting(result.rate, result.servises);
 
-      setData([settingProfile]);
+        setCheckuseModel(true);
+        setData([settingProfile]);
+      } else {
+        setCheckuseModel(false);
+      }
     });
   }, []);
 
@@ -82,64 +86,66 @@ export default function CalculatorContainer() {
       <ReactTooltip place="bottom" effect="solid" />
       <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span>
       <div className={classes.titelContainer}>Расчёт</div>
-      <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
-        <div>
+      {checkuseModel && data ? (
+        <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label
-              htmlFor="Киловатт"
-              className={classes.inputILabel}
-            >
-              Киловатт
-            </label>
-            <input
-              className={classes.inputItem}
-              id="Киловатт"
-              name="Киловатт"
-              disabled={false}
-              defaultValue=""
-              ref={register({ max: 5000, min: 1, maxLength: 100 })}
-            />
-            <HiOutlineLightBulb style={{ cursor: 'pointer' }} data-tip data-for="help" size="18px" color="#414241" />
+            <div>
+              <label
+                htmlFor="Киловатт"
+                className={classes.inputILabel}
+              >
+                Киловатт
+              </label>
+              <input
+                className={classes.inputItem}
+                id="Киловатт"
+                name="Киловатт"
+                disabled={false}
+                defaultValue=""
+                ref={register({ max: 5000, min: 1, maxLength: 100 })}
+              />
+              <HiOutlineLightBulb style={{ cursor: 'pointer' }} data-tip data-for="help" size="18px" color="#414241" />
+            </div>
+            {
+              data[0].servises.map((product) => (
+                <div key={product.id}>
+                  <label
+                    htmlFor={product.name}
+                    className={classes.inputILabel}
+                  >
+                    {product.name}
+                  </label>
+                  <input
+                    className={classes.inputItem}
+                    id={product.name}
+                    name={product.name}
+                    disabled={product.disable}
+                    defaultValue={product.name === 'Энергия' ? totalRate : product.rate}
+                    ref={register({ max: 5000, min: 1, maxLength: 100 })}
+                  />
+                  <BiRuble size="18px" color="#414241" />
+                  <RateToolTip rate={data[0].rate} />
+                </div>
+              ))
+            }
           </div>
-          {data ? (
-            data[0].servises.map((product) => (
-              <div key={product.id}>
-                <label
-                  htmlFor={product.name}
-                  className={classes.inputILabel}
-                >
-                  {product.name}
-                </label>
-                <input
-                  className={classes.inputItem}
-                  id={product.name}
-                  name={product.name}
-                  disabled={product.disable}
-                  defaultValue={product.name === 'Энергия' ? totalRate : product.rate}
-                  ref={register({ max: 5000, min: 1, maxLength: 100 })}
-                />
-                <BiRuble size="18px" color="#414241" />
-                <RateToolTip rate={data[0].rate} />
-              </div>
-            ))
+          {total > 0 ? (<div className={classes.totalValue}>{`${total} ${titeleValue}`}</div>
           ) : (
             <></>
           )}
-        </div>
-        {total > 0 ? (<div className={classes.totalValue}>{`${total} ${titeleValue}`}</div>
-        ) : (
-          <></>
-        )}
-        <div className={classes.actionContainer}>
-          <input className={`${classes.btn}`} value="Рассчитать" type="submit" />
-          <input
-            className={`${classes.btn} ${classes.reset}`}
-            type="reset"
-            value="Сбросить"
-            onClick={reserValue}
-          />
-        </div>
-      </form>
+          <div className={classes.actionContainer}>
+            <input className={`${classes.btn}`} value="Рассчитать" type="submit" />
+            <input
+              className={`${classes.btn} ${classes.reset}`}
+              type="reset"
+              value="Сбросить"
+              onClick={reserValue}
+            />
+          </div>
+        </form>
+      ) : (
+        <div>Вы не указали тарифы</div>
+      )}
     </div>
   );
 }
