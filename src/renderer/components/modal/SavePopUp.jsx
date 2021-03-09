@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { IoCloseOutline } from 'react-icons/io5';
+import sumHash from 'hash-sum';
 import classes from './SavePopUp.module.css';
 import ModelStatistick from '../../model/ModelStatistic.js';
 
@@ -43,12 +44,16 @@ export default function SavePopUp(props) {
     if (total !== 0) {
       const combinedWhen = `${when.date.year}-${when.date.month}-${new Date().getDate()}`;
 
-      stateDate.statistick.push({ id: 2, when: combinedWhen, total });
+      stateDate.statistick.push({ id: sumHash(new Date().getMilliseconds()), when: combinedWhen, total });
       stateDate.statistick = stateDate.statistick.filter(filteredEmprySave);
 
       window.setStatistic(stateDate);
+      const myNotification = new Notification('Калькулятор', {
+        body: 'Платёж сохранён',
+      });
       props.handleCloseModal();
     } else {
+      // eslint-disable-next-line no-alert
       alert('Вы не рассчитали платёж');
       props.handleCloseModal();
     }
