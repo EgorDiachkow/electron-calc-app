@@ -7,7 +7,7 @@ import Setting from '../../../entity/Setting.js';
 
 export default function MainSetting() {
   const { register, handleSubmit } = useForm();
-  const [dataRate, setDataRate] = useState(true);
+  const [dataRate, setDataRate] = useState(false);
   // eslint-disable-next-line no-use-before-define
   const onSubmit = (result) => createModelServises(result);
 
