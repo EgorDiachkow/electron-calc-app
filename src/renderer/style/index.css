@@ -22,3 +22,7 @@ a{
 body::-webkit-scrollbar-track {
   background: orange;        /* цвет дорожки */
 }
+button{
+  outline: none!important;
+  border: none;
+}
