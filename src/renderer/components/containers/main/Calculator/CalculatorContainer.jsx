@@ -81,12 +81,12 @@ export default function CalculatorContainer() {
   return (
     <div className={classes.container}>
       {checkuseModel && data ? (
-        <div className={classes.iconSave} data-tip="Сохраните платёж">
-          <FaSave onClick={() => { setOpenFlag(true); }} size="18px" color="#fff" />
+        <button type="submit" className={classes.iconSave} onClick={() => { setOpenFlag(true); }} data-tip="Сохраните платёж">
+          <FaSave size="18px" color="#fff" />
           <SavePopUp total={total} openFlag={openFlag} handleCloseModal={handleCloseModal} />
-        </div>
+          <ReactTooltip place="bottom" effect="solid" />
+        </button>
       ) : (<></>)}
-      <ReactTooltip place="bottom" effect="solid" />
       {/* <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span> */}
       {checkuseModel && data ? (
         <>
