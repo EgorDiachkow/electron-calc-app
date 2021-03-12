@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiOutlineLightBulb } from 'react-icons/hi';
-import { FaRegQuestionCircle, FaSave } from 'react-icons/fa';
+import { FaSave } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
 import ReactTooltip from 'react-tooltip';
 import SavePopUp from '../../../modal/SavePopUp.jsx';
@@ -60,6 +63,10 @@ export default function CalculatorContainer() {
     setOpenFlag(false);
   }
 
+  function handlerOpenModal() {
+    setOpenFlag(true);
+  }
+
   function reserValue() {
     setTotalRate('');
     setTotal('');
@@ -81,13 +88,14 @@ export default function CalculatorContainer() {
   return (
     <div className={classes.container}>
       {checkuseModel && data ? (
-        <button type="submit" className={classes.iconSave} onClick={() => { setOpenFlag(true); }} data-tip="Сохраните платёж">
-          <FaSave size="18px" color="#fff" />
-          <SavePopUp total={total} openFlag={openFlag} handleCloseModal={handleCloseModal} />
+        <>
+          <div className={classes.iconSave} data-tip="Сохраните платёж">
+            <span className={classes.containerIcon} onClick={handlerOpenModal}><FaSave size="18px" color="#fff" /></span>
+            <SavePopUp total={total} openFlag={openFlag} handleCloseModal={handleCloseModal} />
+          </div>
           <ReactTooltip place="bottom" effect="solid" />
-        </button>
+        </>
       ) : (<></>)}
-      {/* <span className={classes.heplItem}><FaRegQuestionCircle size="18px" color="rgba(36,36,36,.5)" /></span> */}
       {checkuseModel && data ? (
         <>
           <div className={classes.titelContainer}>Расчёт</div>

@@ -3,10 +3,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
-import ReactModal from 'react-modal';
 import { useForm } from 'react-hook-form';
-import { IoCloseOutline } from 'react-icons/io5';
 import sumHash from 'hash-sum';
+import ModalPopUp from '../../hoc/popUp/ModalPopUp.jsx';
 import classes from './SavePopUp.module.css';
 import ModelStatistick from '../../model/ModelStatistic.js';
 
@@ -29,9 +28,7 @@ const modalStyle = {
   },
 };
 
-ReactModal.setAppElement('#root');
-
-export default function SavePopUp(props) {
+function SavePopUp(props) {
   const [stateDate, setStateDate] = useState([]);
   const { register, handleSubmit, errors } = useForm();
   const [flegUseModel, setFlegUseModel] = useState(false);
@@ -68,11 +65,9 @@ export default function SavePopUp(props) {
   }, []);
 
   return (
-    <ReactModal style={modalStyle} className={classes.popUpwrap} isOpen={props.openFlag} onRequestClose={props.handleCloseModal}>
-      <IoCloseOutline className={classes.closeBtn} onClick={props.handleCloseModal} size="25px" />
+    <>
       <span className={classes.title}>Сохранить платёж</span>
       <span className={classes.subtitle}>Укажите дату</span>
-
       <div className={classes.containerForm}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <select name="date.month" ref={register}>
@@ -93,6 +88,8 @@ export default function SavePopUp(props) {
           <input className={classes.btn} type="submit" value="Сохранить" />
         </form>
       </div>
-    </ReactModal>
+    </>
   );
 }
+
+export default ModalPopUp(SavePopUp);
