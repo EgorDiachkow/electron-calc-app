@@ -20,6 +20,16 @@ window.setStatistic = (a) => new Promise((resolve) => {
   ipcRenderer.once('entriesStateSet', (_, data) => resolve(data));
 });
 
+window.getUserProfile = () => new Promise((resolve) => {
+  ipcRenderer.send('getUserProfile');
+  ipcRenderer.once('userProfileGet', (_, data) => resolve(data));
+});
+
+window.setUserProfile = (a) => new Promise((resolve) => {
+  ipcRenderer.send('setUserProfile', a);
+  ipcRenderer.once('userProfileSet', (_, data) => resolve(data));
+});
+
 window.closeWindowApp = () => {
   ipcRenderer.send('closeWindow');
 };
