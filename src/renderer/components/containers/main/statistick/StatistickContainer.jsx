@@ -27,14 +27,14 @@ export default function StatistickContainer() {
     const filteredItems = date.filter((item) => item[0].indexOf(data) !== -1);
     let total = 0;
 
-    filteredItems.forEach((item) => { total += item[1]; });
+    filteredItems.forEach((item) => { total += +item[1]; });
     setYearTotal(total);
   }
 
   function getTotalAll(date) {
     let total = 0;
 
-    date.forEach((item) => { total += item[1]; });
+    date.forEach((item) => { total += +item[1]; });
     setAllTotal(total);
   }
 
