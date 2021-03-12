@@ -2,7 +2,7 @@ import React from 'react';
 import MenuContainer from './menu/MenuContainer.jsx';
 import Logo from '../logo/Logo.jsx';
 import classes from './MenuBar.module.css';
-import UserProfile from './menu/portfolio/UserProfile.jsx';
+import UserProfile from '../profile/UserProfileContainer.jsx';
 
 export default function LeftMenuBar() {
   return (
