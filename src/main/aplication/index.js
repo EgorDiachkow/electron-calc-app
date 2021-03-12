@@ -59,6 +59,14 @@ export default class CalculatorApp {
       this.window.webContents.send('entriesStateSet', this.storage.set('statistic', data));
     });
 
+    ipcMain.on('getUserProfile', () => {
+      this.window.webContents.send('userProfileGet', this.storage.get('profile'));
+    });
+
+    ipcMain.on('setUserProfile', (_, data) => {
+      this.window.webContents.send('userProfileSet', this.storage.set('profile', data));
+    });
+
     ipcMain.on('closeWindow', () => {
       app.quit();
     });
