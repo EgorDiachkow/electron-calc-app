@@ -1,0 +1,13 @@
+.popUpwrap{
+    right: 133px!important;
+    top: 20%!important;
+    width: 304px!important;
+    padding-bottom: 20px!important;
+}
+.closeBtn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    z-index: 9999999;
+}
