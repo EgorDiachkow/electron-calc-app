@@ -94,3 +94,13 @@
 .containerRate {
     margin: 20px 0 15px -30px;
 }
+.errorMessage{
+    font-size: 11px;
+    color: red;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    bottom: -7px;
+    left: 10px;
+}
+.inputContainer{position: relative;}
