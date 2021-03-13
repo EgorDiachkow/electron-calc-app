@@ -6,7 +6,7 @@ import dataModel from '../../../model/ModelData.js';
 import Setting from '../../../entity/Setting.js';
 
 export default function MainSetting() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [dataRate, setDataRate] = useState(false);
   // eslint-disable-next-line no-use-before-define
   const onSubmit = (result) => createModelServises(result);
@@ -58,20 +58,29 @@ export default function MainSetting() {
             {dataRate ? (
               dataRate[0].servises.map((product) => (
                 product.name === 'Энергия' ? (null) : (
-                  <div key={product.id}>
-                    <label
-                      htmlFor={product.name}
-                      className={classes.inputILabel}
-                    >
-                      {product.name}
-                    </label>
+                  <div className={classes.inputContainer} key={product.id}>
+                    <label htmlFor={product.name} className={classes.inputILabel}>{product.name}</label>
                     <input
                       className={classes.inputItem}
                       id={product.name}
                       defaultValue={product.rate}
                       name={product.name}
-                      ref={register()}
+                      type="text"
+                      ref={register({
+                        valueAsNumber: true,
+                        min: {
+                          value: 1,
+                          message: 'Значение должно быть больше 0',
+                        },
+                        validate: {
+                          isNumber: (value) => value.match(/[a-zA-Z,a-яЯ-а,ё]+/g) === null,
+                          isSymbol: (value) => value.match(/[^\w|^.]|_/) === null,
+                        },
+                      })}
                     />
+                    {product.name in errors ? <p className={classes.errorMessage}>{errors[product.name].message}</p> : <></>}
+                    {product.name in errors && errors[product.name].type === 'isNumber' ? <p className={classes.errorMessage}>Значение должно быть числом</p> : <></>}
+                    {product.name in errors && errors[product.name].type === 'isSymbol' ? <p className={classes.errorMessage}>Запрещёные символы</p> : <></>}
                     <BiRuble size="18px" color="#414241" />
                   </div>
                 )
@@ -90,6 +99,7 @@ export default function MainSetting() {
                       defaultValue={product.diapason[0]}
                       name={`${product.id}.diapason[0]`}
                       ref={register()}
+                      type="number"
                     />
                     <span className={classes.inputILabel}>до</span>
                     <input
@@ -97,13 +107,21 @@ export default function MainSetting() {
                       defaultValue={product.diapason[1]}
                       name={`${product.id}.diapason[1]`}
                       ref={register()}
+                      type="number"
                     />
                     <span className={`${classes.inputILabel} ${classes.value}`}>тариф</span>
                     <input
                       className={classes.inputItem}
                       defaultValue={product.value}
                       name={`${product.id}.value`}
-                      ref={register()}
+                      ref={register({
+                        min: {
+                          value: 0,
+                        },
+                        validate: {
+                          isNumber: (value) => value.match(/\D/) === null,
+                        },
+                      })}
                     />
                   </div>
                 ))

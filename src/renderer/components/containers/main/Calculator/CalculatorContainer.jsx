@@ -114,7 +114,17 @@ export default function CalculatorContainer() {
                   name="Киловатт"
                   disabled={false}
                   defaultValue=""
-                  ref={register({ max: 5000, min: 1, maxLength: 100 })}
+                  ref={register({
+                    valueAsNumber: true,
+                    min: {
+                      value: 1,
+                      message: 'Значение должно быть больше 0',
+                    },
+                    validate: {
+                      isNumber: (value) => value.match(/[a-zA-Z,a-яЯ-а,ё]+/g) === null,
+                      isSymbol: (value) => value.match(/[^\w|^.]|_/) === null,
+                    },
+                  })}
                 />
                 <HiOutlineLightBulb style={{ cursor: 'pointer' }} data-tip data-for="help" size="18px" color="#414241" />
               </div>
