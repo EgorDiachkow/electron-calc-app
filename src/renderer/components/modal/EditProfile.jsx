@@ -1,18 +1,14 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import ModelUser from '../../model/ModelUser.js';
 import ModalPopUp from '../../hoc/popUp/ModalPopUp.jsx';
 import classes from './EditProfile.module.css';
 
 function EditProfile(props) {
-  const [userDate, setUserDate] = useState(false);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => saveUserData(data);
 
   function saveUserData(data) {
@@ -21,31 +17,23 @@ function EditProfile(props) {
     props.handleCloseModal();
   }
 
-  useEffect(() => {
-    window.getUserProfile().then((result) => {
-      const availableData = result === null ? ModelUser : result;
-
-      setUserDate(availableData);
-    });
-  }, []);
-
   return (
     <>
       <span className={classes.title}>Редактирование профиля</span>
       <div className={classes.container}>
-        {userDate ? (
+        {props.userDate ? (
           <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label htmlFor="name" className={classes.inputILabel}>Имя</label>
-              <input className={classes.inputItem} type="text" name="name" defaultValue={userDate.name} ref={register} />
+              <input className={classes.inputItem} type="text" name="name" defaultValue={props.userDate.name} ref={register} />
             </div>
             <div>
               <label htmlFor="lastname" className={classes.inputILabel}>Фамилия</label>
-              <input className={classes.inputItem} type="text" name="lastname" defaultValue={userDate.lastname} ref={register} />
+              <input className={classes.inputItem} type="text" name="lastname" defaultValue={props.userDate.lastname} ref={register} />
             </div>
             <div>
               <label htmlFor="photo" className={classes.inputILabel}>Фото</label>
-              <input className={classes.inputItem} type="text" name="photo" defaultValue={userDate.photo} ref={register} />
+              <input className={classes.inputItem} type="text" name="photo" defaultValue={props.userDate.photo} ref={register} />
             </div>
             <input className={classes.btn} type="submit" value="Сохранить" />
           </form>

@@ -1,52 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { BiRuble } from 'react-icons/bi';
+import { observer } from 'mobx-react-lite';
 import classes from './MainSetting.module.css';
-import dataModel from '../../../model/ModelData.js';
-import Setting from '../../../entity/Setting.js';
+import { settingStore } from '../../../store';
 
-export default function MainSetting() {
+const store = settingStore();
+
+export const MainSetting = observer(() => {
   const { register, handleSubmit, errors } = useForm();
-  const [dataRate, setDataRate] = useState(false);
-  // eslint-disable-next-line no-use-before-define
-  const onSubmit = (result) => createModelServises(result);
-
-  function saveData(data) {
-    window.setData(data[0]);
-    const myNotification = new Notification('Калькулятор', {
-      body: 'Данные сохранены',
-    });
-  }
-
-  function createModelRate(data) {
-    dataRate[0].rate.forEach((item, index) => {
-      item.diapason[0] = +data[index + 1].diapason[0];
-      item.diapason[1] = +data[index + 1].diapason[1];
-      item.value = +data[index + 1].value;
-    });
-
-    saveData(dataRate);
-  }
-
-  function createModelServises(data) {
-    const listData = Object.keys(data);
-
-    listData.forEach((itemData) => {
-      dataRate[0].servises.forEach((item) => {
-        if (item.name === itemData) item.rate = data[itemData];
-      });
-    });
-
-    createModelRate(data);
-  }
+  const onSubmit = (result) => store.createModelServises(result);
 
   useEffect(() => {
-    window.getData().then((result) => {
-      const availableData = result === null ? dataModel : result;
-      const settingProfile = new Setting(availableData.rate, availableData.servises);
-
-      setDataRate([settingProfile]);
-    });
+    store.getData();
   }, []);
 
   return (
@@ -55,8 +21,8 @@ export default function MainSetting() {
         <div className={classes.item}>
           <span className={classes.titleSetting}>Тарифы</span>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {dataRate ? (
-              dataRate[0].servises.map((product) => (
+            {store.dataRate ? (
+              store.dataRate[0].servises.map((product) => (
                 product.name === 'Энергия' ? (null) : (
                   <div className={classes.inputContainer} key={product.id}>
                     <label htmlFor={product.name} className={classes.inputILabel}>{product.name}</label>
@@ -90,8 +56,8 @@ export default function MainSetting() {
             )}
             <div className={classes.containerRate}>
               <span className={`${classes.inputILabel} ${classes.title}`}>Электроэнергия</span>
-              {dataRate ? (
-                dataRate[0].rate.map((product) => (
+              {store.dataRate ? (
+                store.dataRate[0].rate.map((product) => (
                   <div key={product.id}>
                     <span className={classes.inputILabel}>от</span>
                     <input
@@ -135,4 +101,4 @@ export default function MainSetting() {
       </div>
     </div>
   );
-}
+});
