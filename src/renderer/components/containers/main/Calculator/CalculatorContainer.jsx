@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { FaSave } from 'react-icons/fa';
@@ -10,86 +10,29 @@ import ReactTooltip from 'react-tooltip';
 import { observer } from 'mobx-react-lite';
 import SavePopUp from '../../../modal/SavePopUp.jsx';
 import RateToolTip from '../../toolTip/RateToolTip.jsx';
-import declOfNum from '../../../../optional/declOfNum.js';
 import PlugCalculator from './plug/PlugCalculator.jsx';
-import Setting from '../../../../entity/Setting.js';
 import classes from './Calculator.module.css';
-import { openPopUpstore } from '../../../../store';
+import { openPopUpstore, mainDataStore } from '../../../../store';
 
-const store = openPopUpstore();
+const popUpStore = openPopUpstore();
+const dataStore = mainDataStore();
 
 export const CalculatorContainer = observer(() => {
   const { register, handleSubmit } = useForm();
-  // eslint-disable-next-line no-use-before-define
-  const onSubmit = (result) => console.log(result); // getTotalValue(result);
-  const [total, setTotal] = useState(0);
-  const [totalRate, setTotalRate] = useState();
-  const [titeleValue, setTiteleValue] = useState();
-  const [checkuseModel, setCheckuseModel] = useState(false);
+  const onSubmit = (result) => dataStore.getTotalValue(result);
 
-  /* function getEnergyValue(result) {
-    const kvtValue = +result['Киловатт'];
-    let totalValue = 0;
-    let currentIndex = 0;
-
-    data[0].rate.forEach((item, index) => {
-      let currentValue = 0;
-
-      if (index === 2) data[0].rate[2].diapason[1] = kvtValue;
-
-      for (let i = currentIndex; i < item.diapason[1] && currentIndex < kvtValue; i++) {
-        currentValue += item.value;
-        currentIndex++;
-      }
-      totalValue += currentValue;
-    });
-    setTotalRate(Math.ceil(totalValue));
-    return Math.ceil(totalValue);
-  } */
-
-  /* function getTotalValue(result) {
-    const listItem = Object.entries(result);
-    let totalValue = 0;
-
-    listItem.forEach((item) => {
-      if (item[0] !== 'Энергия' && item[0] !== 'Киловатт') {
-        totalValue += +item[1];
-      }
-    });
-    totalValue += getEnergyValue(result);
-    setTiteleValue(declOfNum(totalValue, ['рубль', 'рубля', 'рублей']));
-    setTotal(totalValue);
-  }
- */
-  function reserValue() {
-    setTotalRate('');
-    setTotal('');
-  }
-
-  // useEffect(() => {
-  //   window.getData().then((result) => {
-  //     if (result !== null) {
-  //       const settingProfile = new Setting(result.rate, result.servises);
-
-  //       setCheckuseModel(true);
-  //       setData([settingProfile]);
-  //     } else {
-  //       setCheckuseModel(false);
-  //     }
-  //   });
-  // }, []);
   useEffect(() => {
-    store.getData();
+    dataStore.getData();
   }, []);
-  console.log(store.data[0], 'компонент');
+
   return (
     <div className={classes.container}>
       <div className={classes.iconSave} data-tip="Сохраните платёж">
-        <span className={classes.containerIcon} onClick={store.openPopUp}><FaSave size="18px" color="#fff" /></span>
-        <SavePopUp total={total} openFlag={store.flagPopUp} handleCloseModal={store.closePopUp} />
+        <span className={classes.containerIcon} onClick={popUpStore.openPopUp}><FaSave size="18px" color="#fff" /></span>
+        <SavePopUp total={dataStore.total} openFlag={popUpStore.flagPopUp} handleCloseModal={popUpStore.closePopUp} />
       </div>
       <ReactTooltip place="bottom" effect="solid" />
-      {store.data.length ? (
+      {dataStore.data.length ? (
         <>
           <div className={classes.titelContainer}>Расчёт</div>
           <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
@@ -117,7 +60,7 @@ export const CalculatorContainer = observer(() => {
                 <HiOutlineLightBulb style={{ cursor: 'pointer' }} data-tip data-for="help" size="18px" color="#414241" />
               </div>
               {
-                store.data[0].servises.map((product) => (
+                dataStore.data[0].servises.map((product) => (
                   <div key={product.id}>
                     <label
                       htmlFor={product.name}
@@ -130,16 +73,16 @@ export const CalculatorContainer = observer(() => {
                       id={product.name}
                       name={product.name}
                       disabled={product.disable}
-                      defaultValue={product.name === 'Энергия' ? totalRate : product.rate}
+                      defaultValue={product.name === 'Энергия' ? dataStore.totalRate : product.rate}
                       ref={register({ max: 5000, min: 1, maxLength: 100 })}
                     />
                     <BiRuble size="18px" color="#414241" />
-                    <RateToolTip rate={store.data[0].rate} />
+                    <RateToolTip rate={dataStore.data[0].rate} />
                   </div>
                 ))
               }
             </div>
-            {total > 0 ? (<div className={classes.totalValue}>{`${total} ${titeleValue}`}</div>
+            {dataStore.total > 0 ? (<div className={classes.totalValue}>{`${dataStore.total} ${dataStore.titeleValue}`}</div>
             ) : (
               <></>
             )}
@@ -149,7 +92,7 @@ export const CalculatorContainer = observer(() => {
                 className={`${classes.btn} ${classes.reset}`}
                 type="reset"
                 value="Сбросить"
-                onClick={reserValue}
+                onClick={dataStore.reserValue}
               />
             </div>
           </form>
