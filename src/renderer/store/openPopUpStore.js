@@ -1,16 +1,18 @@
 import { makeObservable, observable, action } from 'mobx';
 
-export function mainDataStore() {
+export function openPopUpstore() {
   return makeObservable({
-    datas: [],
+    flagPopUp: false,
 
-    getData() {
-      window.getData().then((result) => {
-        this.data = [result];
-      });
+    openPopUp() {
+      this.flagPopUp = true;
+    },
+    closePopUp() {
+      this.flagPopUp = false;
     },
   }, {
-    datas: observable,
-    getData: action.bound,
+    flagPopUp: observable,
+    openPopUp: action.bound,
+    closePopUp: action.bound,
   });
 }
