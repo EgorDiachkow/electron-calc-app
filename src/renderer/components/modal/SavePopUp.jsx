@@ -9,25 +9,6 @@ import ModalPopUp from '../../hoc/popUp/ModalPopUp.jsx';
 import classes from './SavePopUp.module.css';
 import ModelStatistick from '../../model/ModelStatistic.js';
 
-const modalStyle = {
-  content: {
-    position: 'absolute',
-    inset: 'auto',
-    margin: '0 auto',
-    border: '1px solid #ccc',
-    background: '#fff',
-    overflow: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: '15px',
-    outline: 'none',
-    padding: '10px',
-  },
-  overlay: {
-    position: 'fixed',
-    backgroundColor: 'rgba(0,0,0,.1)',
-  },
-};
-
 function SavePopUp(props) {
   const [stateDate, setStateDate] = useState([]);
   const { register, handleSubmit, errors } = useForm();

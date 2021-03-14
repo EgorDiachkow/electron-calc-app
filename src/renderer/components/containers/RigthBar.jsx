@@ -4,7 +4,7 @@ import { Route, NavLink } from 'react-router-dom';
 import SavePopUp from '../modal/SavePopUp.jsx';
 import classes from './MenuBar.module.css';
 import StatistickContainer from './main/statistick/StatistickContainer.jsx';
-import CalculatorContainer from './main/Calculator/CalculatorContainer.jsx';
+import { CalculatorContainer } from './main/Calculator/CalculatorContainer.jsx';
 import MainSetting from './setting/MainSetting.jsx';
 
 export default function rightMenuBar() {

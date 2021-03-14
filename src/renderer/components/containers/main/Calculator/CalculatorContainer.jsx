@@ -7,25 +7,27 @@ import { HiOutlineLightBulb } from 'react-icons/hi';
 import { FaSave } from 'react-icons/fa';
 import { BiRuble } from 'react-icons/bi';
 import ReactTooltip from 'react-tooltip';
+import { observer } from 'mobx-react-lite';
 import SavePopUp from '../../../modal/SavePopUp.jsx';
 import RateToolTip from '../../toolTip/RateToolTip.jsx';
 import declOfNum from '../../../../optional/declOfNum.js';
 import PlugCalculator from './plug/PlugCalculator.jsx';
 import Setting from '../../../../entity/Setting.js';
 import classes from './Calculator.module.css';
+import { openPopUpstore } from '../../../../store';
 
-export default function CalculatorContainer() {
+const store = openPopUpstore();
+
+export const CalculatorContainer = observer(() => {
   const { register, handleSubmit } = useForm();
   // eslint-disable-next-line no-use-before-define
-  const onSubmit = (result) => getTotalValue(result);
-  const [data, setData] = useState(false);
+  const onSubmit = (result) => console.log(result); // getTotalValue(result);
   const [total, setTotal] = useState(0);
   const [totalRate, setTotalRate] = useState();
   const [titeleValue, setTiteleValue] = useState();
-  const [openFlag, setOpenFlag] = useState(false);
   const [checkuseModel, setCheckuseModel] = useState(false);
 
-  function getEnergyValue(result) {
+  /* function getEnergyValue(result) {
     const kvtValue = +result['Киловатт'];
     let totalValue = 0;
     let currentIndex = 0;
@@ -43,9 +45,9 @@ export default function CalculatorContainer() {
     });
     setTotalRate(Math.ceil(totalValue));
     return Math.ceil(totalValue);
-  }
+  } */
 
-  function getTotalValue(result) {
+  /* function getTotalValue(result) {
     const listItem = Object.entries(result);
     let totalValue = 0;
 
@@ -58,56 +60,42 @@ export default function CalculatorContainer() {
     setTiteleValue(declOfNum(totalValue, ['рубль', 'рубля', 'рублей']));
     setTotal(totalValue);
   }
-
-  function handleCloseModal() {
-    setOpenFlag(false);
-  }
-
-  function handlerOpenModal() {
-    setOpenFlag(true);
-  }
-
+ */
   function reserValue() {
     setTotalRate('');
     setTotal('');
   }
 
+  // useEffect(() => {
+  //   window.getData().then((result) => {
+  //     if (result !== null) {
+  //       const settingProfile = new Setting(result.rate, result.servises);
+
+  //       setCheckuseModel(true);
+  //       setData([settingProfile]);
+  //     } else {
+  //       setCheckuseModel(false);
+  //     }
+  //   });
+  // }, []);
   useEffect(() => {
-    window.getData().then((result) => {
-      if (result !== null) {
-        const settingProfile = new Setting(result.rate, result.servises);
-
-        setCheckuseModel(true);
-        setData([settingProfile]);
-      } else {
-        setCheckuseModel(false);
-      }
-    });
+    store.getData();
   }, []);
-
+  console.log(store.data[0], 'компонент');
   return (
     <div className={classes.container}>
-      {checkuseModel && data ? (
-        <>
-          <div className={classes.iconSave} data-tip="Сохраните платёж">
-            <span className={classes.containerIcon} onClick={handlerOpenModal}><FaSave size="18px" color="#fff" /></span>
-            <SavePopUp total={total} openFlag={openFlag} handleCloseModal={handleCloseModal} />
-          </div>
-          <ReactTooltip place="bottom" effect="solid" />
-        </>
-      ) : (<></>)}
-      {checkuseModel && data ? (
+      <div className={classes.iconSave} data-tip="Сохраните платёж">
+        <span className={classes.containerIcon} onClick={store.openPopUp}><FaSave size="18px" color="#fff" /></span>
+        <SavePopUp total={total} openFlag={store.flagPopUp} handleCloseModal={store.closePopUp} />
+      </div>
+      <ReactTooltip place="bottom" effect="solid" />
+      {store.data.length ? (
         <>
           <div className={classes.titelContainer}>Расчёт</div>
           <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
             <div>
               <div>
-                <label
-                  htmlFor="Киловатт"
-                  className={classes.inputILabel}
-                >
-                  Киловатт
-                </label>
+                <label htmlFor="Киловатт" className={classes.inputILabel}>Киловатт</label>
                 <input
                   className={classes.inputItem}
                   id="Киловатт"
@@ -129,7 +117,7 @@ export default function CalculatorContainer() {
                 <HiOutlineLightBulb style={{ cursor: 'pointer' }} data-tip data-for="help" size="18px" color="#414241" />
               </div>
               {
-                data[0].servises.map((product) => (
+                store.data[0].servises.map((product) => (
                   <div key={product.id}>
                     <label
                       htmlFor={product.name}
@@ -146,7 +134,7 @@ export default function CalculatorContainer() {
                       ref={register({ max: 5000, min: 1, maxLength: 100 })}
                     />
                     <BiRuble size="18px" color="#414241" />
-                    <RateToolTip rate={data[0].rate} />
+                    <RateToolTip rate={store.data[0].rate} />
                   </div>
                 ))
               }
@@ -171,4 +159,4 @@ export default function CalculatorContainer() {
       )}
     </div>
   );
-}
+});
