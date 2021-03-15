@@ -11,7 +11,10 @@ const SavePopUp = observer((props) => {
   const { register, handleSubmit } = useForm();
   // eslint-disable-next-line no-use-before-define
   // eslint-disable-next-line react/prop-types
-  const onSubmit = (when) => store.createdStatisticsModel(when, props.total);
+  const onSubmit = (when) => {
+    store.createdStatisticsModel(when, props.total);
+    props.handleCloseModal();
+  };
 
   useEffect(() => {
     store.getData();
