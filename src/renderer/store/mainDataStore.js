@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, runInAction } from 'mobx';
+import { makeObservable, observable, action, runInAction, computed } from 'mobx';
 import Setting from '../entity/Setting.js';
 import declOfNum from '../optional/declOfNum.js';
 
@@ -8,7 +8,11 @@ export function mainDataStore() {
     total: 0,
     totalRate: '',
     titeleValue: 0,
+    flagAccessSave: false,
 
+    get accessSave() {
+      return !this.flagAccessSave ? { pointerEvents: 'none' } : null;
+    },
     getEnergyValue(result) {
       const kvtValue = +result['Киловатт'];
       let totalValue = 0;
@@ -25,8 +29,12 @@ export function mainDataStore() {
         }
         totalValue += currentValue;
       });
+      this.flagAccessSave = true;
       this.totalRate = Math.ceil(totalValue);
       return Math.ceil(totalValue);
+    },
+    getAccessSave() {
+      this.flagAccessSave = false;
     },
     getTotalValue(result) {
       const listItem = Object.entries(result);
@@ -42,6 +50,7 @@ export function mainDataStore() {
       this.total = totalValue;
     },
     reserValue() {
+      this.flagAccessSave = false;
       this.totalRate = '';
       this.total = '';
     },
@@ -55,12 +64,15 @@ export function mainDataStore() {
       });
     },
   }, {
+    flagAccessSave: observable,
     data: observable,
     total: observable,
     totalRate: observable,
     titeleValue: observable,
     reserValue: action.bound,
     getData: action.bound,
+    accessSave: computed,
+    getAccessSave: action.bound,
     getTotalValue: action.bound,
     getEnergyValue: action.bound,
   });

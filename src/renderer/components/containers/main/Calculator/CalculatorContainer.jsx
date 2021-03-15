@@ -27,8 +27,8 @@ export const CalculatorContainer = observer(() => {
   return (
     <div className={classes.container}>
       <div className={classes.iconSave} data-tip="Сохраните платёж">
-        <span className={classes.containerIcon} onClick={popUpStore.openPopUp}><FaSave size="18px" color="#fff" /></span>
-        <SavePopUp total={dataStore.total} openFlag={popUpStore.flagPopUp} handleCloseModal={popUpStore.closePopUp} />
+        <span className={classes.containerIcon} style={dataStore.accessSave} onClick={popUpStore.openPopUp}><FaSave size="18px" color="#fff" /></span>
+        <SavePopUp getAccessSave={dataStore.getAccessSave} total={dataStore.total} openFlag={popUpStore.flagPopUp} handleCloseModal={popUpStore.closePopUp} />
       </div>
       <ReactTooltip place="bottom" effect="solid" />
       {dataStore.data.length ? (

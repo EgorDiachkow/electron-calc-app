@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { observer } from 'mobx-react-lite';
 import ModalPopUp from '../../hoc/popUp/ModalPopUp.jsx';
@@ -13,6 +13,7 @@ const SavePopUp = observer((props) => {
   // eslint-disable-next-line react/prop-types
   const onSubmit = (when) => {
     store.createdStatisticsModel(when, props.total);
+    props.getAccessSave();
     props.handleCloseModal();
   };
 
