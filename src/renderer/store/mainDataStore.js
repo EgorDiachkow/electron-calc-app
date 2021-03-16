@@ -56,9 +56,10 @@ export function mainDataStore() {
     },
     getData() {
       window.getData().then((result) => {
-        runInAction(() => {
-          const settingProfile = new Setting(result.rate, result.servises);
+        console.log('getData');
+        const settingProfile = new Setting(result.rate, result.servises);
 
+        runInAction(() => {
           this.data = [settingProfile];
         });
       });

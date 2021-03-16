@@ -32,6 +32,7 @@ export function settingStore() {
       this.createModelRate(data);
     },
     getData() {
+      console.log('getSetting');
       window.getData().then((result) => {
         runInAction(() => {
           const availableData = result === null ? dataModel : result;
@@ -41,6 +42,5 @@ export function settingStore() {
         });
       });
     },
-  }, {
   });
 }

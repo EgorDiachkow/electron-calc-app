@@ -7,9 +7,12 @@ import { settingStore } from '../../../store';
 
 const store = settingStore();
 
-export const MainSetting = observer(() => {
+export const MainSetting = observer((props) => {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (result) => store.createModelServises(result);
+  const onSubmit = (result) => {
+    store.createModelServises(result);
+    props.setTest(result);
+  };
 
   useEffect(() => {
     store.getData();

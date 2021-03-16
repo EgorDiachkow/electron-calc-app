@@ -14,21 +14,22 @@ import classes from './Calculator.module.css';
 import { openPopUpstore, mainDataStore } from '../../../../store';
 
 const popUpStore = openPopUpstore();
-const dataStore = mainDataStore();
+// const dataStore = mainDataStore();
 
-export const CalculatorContainer = observer(() => {
+export const CalculatorContainer = observer((props) => {
+  const dataStore = props.dataStore;
   const { register, handleSubmit } = useForm();
   const onSubmit = (result) => dataStore.getTotalValue(result);
 
-  useEffect(() => {
-    dataStore.getData();
-  }, []);
+  // useEffect(() => {
+  //   dataStore.getData();
+  // }, []);
 
   return (
     <div className={classes.container}>
       <div className={classes.iconSave} data-tip="Сохраните платёж">
         <span className={classes.containerIcon} style={dataStore.accessSave} onClick={popUpStore.openPopUp}><FaSave size="18px" color="#fff" /></span>
-        <SavePopUp getAccessSave={dataStore.getAccessSave} total={dataStore.total} openFlag={popUpStore.flagPopUp} handleCloseModal={popUpStore.closePopUp} />
+        <SavePopUp setTest={props.setTest} getAccessSave={dataStore.getAccessSave} total={dataStore.total} openFlag={popUpStore.flagPopUp} handleCloseModal={popUpStore.closePopUp} />
       </div>
       <ReactTooltip place="bottom" effect="solid" />
       {dataStore.data.length ? (
